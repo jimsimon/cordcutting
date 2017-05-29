@@ -9,9 +9,14 @@
   },
   "dependencies": {
     "express": "^4.15.3",
+    "pg": "^6.2.3",
     "sequelize": "^3.30.4"
   },
+  "devDependencies": {
+    "sequelize-cli": "^2.7.0"
+  },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "sequelize": "node node_modules/.bin/sequelize"
   }
 }

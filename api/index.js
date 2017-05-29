@@ -1,8 +1,11 @@
 const express = require('express')
+const { Channel } = require('./models/index')
 
 const app = express()
 app.get('/', function (req, res) {
-  res.send('Hello World!')
+  Channel.findAll().then(function (channels) {
+    res.json(channels)
+  })
 })
 
 app.listen(3000, function () {
