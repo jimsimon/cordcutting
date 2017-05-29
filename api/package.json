@@ -1,0 +1,17 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Jim Simon <jim.j.simon@gmail.com>",
+  "license": "Apache-2.0",
+  "engines": {
+    "npm": "~5.0.0"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "sequelize": "^3.30.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

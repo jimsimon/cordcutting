@@ -9,29 +9,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
 
-<dom-module id="my-view404">
+<dom-module id="bundle-wizard">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         display: block;
 
-        padding: 10px 20px;
+        padding: 10px;
       }
     </style>
 
-    <!--
-      If deploying in a folder replace href="/" with the full path to your site.
-      Such as: href=="http://polymerelements.github.io/polymer-starter-kit"
-    -->
-    Oops you hit a 404. <a href="/">Head back to home.</a>
+    <div class="card">
+      <h1>Bundle Wizard</h1>
+      <p>Coming Soon!</p>
+    </div>
   </template>
 
   <script>
-    class MyView404 extends Polymer.Element {
-      static get is() { return 'my-view404'; }
+    class BundleWizard extends Polymer.Element {
+      static get is() { return 'bundle-wizard'; }
     }
 
-    window.customElements.define(MyView404.is, MyView404);
+    window.customElements.define(BundleWizard.is, BundleWizard);
   </script>
 </dom-module>
