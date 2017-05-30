@@ -1,7 +1,26 @@
 const express = require('express')
+const Umzug = require('umzug')
+const { sequelize } = require('./util/sequelize')
 const { Provider, Bundle, Channel } = require('./models/index')
 
 const app = express()
+const umzug = new Umzug({
+  storage: 'sequelize',
+  storageOptions: {
+    sequelize
+  }
+})
+
+app.use('*', function (req, res, next) {
+  umzug.pending().then(function (migrations) {
+    if (migrations && migrations.length > 0) {
+      res.status(500).send("You have pending database migrations, please run them before continuing.")
+    } else {
+      next()
+    }
+  });
+})
+
 app.get('/', function (req, res) {
   Provider.findAll({
     include: [{
