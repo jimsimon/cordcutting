@@ -1,43 +1,19 @@
 'use strict';
 
+const { Channel } = require('../models/index')
+const channels = [
+  'ABC',
+  'CBS',
+  'Fox',
+  'NBC'
+]
+
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('Person', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
-
-    return queryInterface.bulkInsert('Channels', [
-      {
-        name: 'ABC'
-      },
-      {
-        name: 'CBS'
-      },
-      {
-        name: 'Fox'
-      },
-      {
-        name: 'NBC'
-      }
-    ])
+    return Channel.bulkCreate(channels.map(c => ({name: c})))
   },
 
   down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
-
-    return queryInterface.bulkDelete('Channels', { name: { $in: ['ABC', 'CBS', 'Fox', 'NBC'] } })
+    return Channel.destroy({ where: { name: { $in: channels }}})
   }
-};
+}
