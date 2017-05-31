@@ -30,11 +30,6 @@ The database port is mapped to your host machine via Docker Compose so feel free
 
 ### Useful Commands
 
-#### Restart the API Server
-Since we don't have a watch system in place to restart the api automatically (yet):
-
-`docker-compose restart api`
-
 #### Stop, Rebuild, and Start the database
 This one comes in handy when messing around with Sequelize stuff
 
