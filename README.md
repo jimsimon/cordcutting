@@ -1,97 +1,43 @@
-# Polymer App Toolbox - Starter Kit
+# Cordcutting
 
-[![Build Status](https://travis-ci.org/PolymerElements/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/PolymerElements/polymer-starter-kit)
+## Developing
 
-This template is a starting point for building apps using a drawer-based
-layout. The layout is provided by `app-layout` elements.
+### Architecture
+* Docker (containerization and deployments)
+* Postgres (database)
+* Node.js 7.10.0+ (API runtime)
+* NPM 5.0.0+ (API package manager)
+* Express.js (API middleware framework)
+* Sequelize.js (API ORM library)
+* Polymer (UI framework)
+* Bower (UI package manager)
 
-This template, along with the `polymer-cli` toolchain, also demonstrates use
-of the "PRPL pattern" This pattern allows fast first delivery and interaction with
-the content at the initial route requested by the user, along with fast subsequent
-navigation by pre-caching the remaining components required by the app and
-progressively loading them on-demand as the user navigates through the app.
+### Prerequisites
+The only prerequisite is Docker.  Once installed, all commands can be executed through the various Docker containers.
 
-The PRPL pattern, in a nutshell:
+#### Initialize and Seed Postgres
+These commands only need to be executed once on a clean database:
+1. Create Tables: `docker-compose run --rm api npm run sequelize db:migrate`
+2. Insert Data: `docker-compose run --rm api npm run sequelize db:seed:all`
 
-* **Push** components required for the initial route
-* **Render** initial route ASAP
-* **Pre-cache** components for remaining routes
-* **Lazy-load** and progressively upgrade next routes on-demand
+### Running
+1. `docker-compose up`
+2. Navigate to the desired URL in your favorite web browser:
+   * UI URL: http://ui.cordcutting.docker
+   * API URL: http://api.cordcutting.docker
 
-### Migrating from Polymer Starter Kit v1?
+### Useful Commands
 
-[Check out our blog post that covers what's changed in PSK2 and how to migrate!](https://www.polymer-project.org/1.0/blog/2016-08-18-polymer-starter-kit-or-polymer-cli.html)
+#### Restart the API Server
+Since we don't have a watch system in place to restart the api automatically (yet):
 
-### Quickstart
+`docker-compose restart api`
 
-We've recorded a Polycast to get you up and running with PSK2 fast!
+#### Stop, Rebuild, and Start the database
+This one comes in handy when messing around with Sequelize stuff
 
-<p align="center">
-  <a href="https://www.youtube.com/watch?v=HgJ0XCyBwzY&list=PLNYkxOF6rcIDdS7HWIC_BYRunV6MHs5xo&index=10">
-    <img src="https://img.youtube.com/vi/HgJ0XCyBwzY/0.jpg" alt="Polymer Starter Kit 2 video">
-  </a>
-</p>
+`docker-compose stop db; docker-compose rm db; docker-compose run --rm api npm run sequelize db:migrate; docker-compose run --rm api npm run sequelize db:seed:all; docker-compose start db`
 
-### Setup
+### Testing
+There aren't any tests yet but we'll have some soon!
 
-##### Prerequisites
-
-First, install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
-[npm](https://www.npmjs.com) (we assume you have pre-installed [node.js](https://nodejs.org)).
-
-    npm install -g polymer-cli
-
-##### Initialize project from template
-
-    mkdir my-app
-    cd my-app
-    polymer init starter-kit
-
-### Start the development server
-
-This command serves the app at `http://localhost:8080` and provides basic URL
-routing for the app:
-
-    polymer serve --open
-
-### Build
-
-This command performs HTML, CSS, and JS minification on the application
-dependencies, and generates a service-worker.js file with code to pre-cache the
-dependencies based on the entrypoint and fragments specified in `polymer.json`.
-The minified files are output to the `build/unbundled` folder, and are suitable
-for serving from a HTTP/2+Push compatible server.
-
-In addition the command also creates a fallback `build/bundled` folder,
-generated using fragment bundling, suitable for serving from non
-H2/push-compatible servers or to clients that do not support H2/Push.
-
-    polymer build
-
-### Preview the build
-
-This command serves the minified version of the app at `http://localhost:8080`
-in an unbundled state, as it would be served by a push-compatible server:
-
-    polymer serve build/unbundled
-
-This command serves the minified version of the app at `http://localhost:8080`
-generated using fragment bundling:
-
-    polymer serve build/bundled
-
-### Run tests
-
-This command will run [Web Component Tester](https://github.com/Polymer/web-component-tester)
-against the browsers currently installed on your machine:
-
-    polymer test
-
-### Adding a new view
-
-You can extend the app by adding more views that will be demand-loaded
-e.g. based on the route, or to progressively render non-critical sections of the
-application. Each new demand-loaded fragment should be added to the list of
-`fragments` in the included `polymer.json` file. This will ensure those
-components and their dependencies are added to the list of pre-cached components
-and will be included in the `bundled` build.

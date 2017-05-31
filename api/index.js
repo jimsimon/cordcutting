@@ -34,6 +34,8 @@ app.post('/wizardResult', async function (req, res) {
       provider: (await bundle.getProvider()).name,
       bundle: bundle.name
     }
+
+    // TODO: Add unique index for name
     const channels = await bundle.getChannels({where: {name: {$in: userSelectedChannels}}})
     const foundChannels = channels.map(c => c.name)
     result.found = foundChannels

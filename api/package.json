@@ -5,7 +5,8 @@
   "author": "Jim Simon <jim.j.simon@gmail.com>",
   "license": "Apache-2.0",
   "engines": {
-    "npm": "~5.0.0"
+    "npm": "^5.0.0",
+    "node": "^7.10.0"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
@@ -18,7 +19,7 @@
     "sequelize-cli": "^2.7.0"
   },
   "scripts": {
-    "devSetup": "npm run migrateDatabase; npm run seedDatabase",
+    "privisionDatabase": "npm run migrateDatabase; npm run seedDatabase",
     "migrateDatabase": "docker-compose run --rm api npm run sequelize db:migrate",
     "seedDatabase": "docker-compose run --rm api npm run sequelize db:seed:all",
     "start": "node index.js",
