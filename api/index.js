@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const Umzug = require('umzug')
 const { sequelize } = require('./util/sequelize')
 const { Provider, Bundle, Channel } = require('./models/index')
@@ -21,31 +22,35 @@ app.use('*', function (req, res, next) {
   });
 })
 
-app.get('/', function (req, res) {
-  Provider.findAll({
-    include: [{
-      model: Bundle,
-      include: [{
-        model: Channel
-      }]
-    }]
-  }).then(function (provider) {
-    res.json(provider)
-  })
+app.use(bodyParser.json())
+
+app.post('/wizardResult', async function (req, res) {
+  const userSelectedChannels = req.body
+
+  const results = []
+  const bundles = await Bundle.findAll()
+  for (const bundle of bundles) {
+    const result = {
+      provider: (await bundle.getProvider()).name,
+      bundle: bundle.name
+    }
+    const channels = await bundle.getChannels({where: {name: {$in: userSelectedChannels}}})
+    const foundChannels = channels.map(c => c.name)
+    result.found = foundChannels
+
+    const userSelectedChannelsSet = new Set(userSelectedChannels)
+    for (const channel of foundChannels) {
+      userSelectedChannelsSet.delete(channel)
+    }
+    result.missing = [...userSelectedChannelsSet]
+    results.push(result)
+  }
+  res.json(results)
 })
 
-app.get('/channels', function (req, res) {
-  Channel.findAll({
-    include: [{
-      model: Bundle,
-      through: {attributes: []},
-      include: [{
-        model: Provider
-      }]
-    }]
-  }).then(function (channels) {
-    res.json(channels)
-  })
+app.get('/channels', async function (req, res) {
+  const channels = await Channel.findAll({ order: [['name', 'ASC']] })
+  res.json(channels)
 })
 
 app.listen(3000, function () {
