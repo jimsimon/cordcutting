@@ -20,6 +20,8 @@ These commands only need to be executed once on a clean database:
 1. Create Tables: `docker-compose run --rm api npm run sequelize db:migrate`
 2. Insert Data: `docker-compose run --rm api npm run sequelize db:seed:all`
 
+The database port is mapped to your host machine via Docker Compose so feel free to use your favorite database tools to poke around inside of it.
+
 ### Running
 1. `docker-compose up`
 2. Navigate to the desired URL in your favorite web browser:
