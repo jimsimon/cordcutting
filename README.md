@@ -15,16 +15,16 @@
 ### Prerequisites
 The only prerequisite is Docker.  Once installed, all commands can be executed through the various Docker containers.
 
+## Install Dependencies
+1. API: `docker-compose run --rm api npm install`
+2. UI: Coming soon, for now just bower install locally
+
 #### Initialize and Seed Postgres
 These commands only need to be executed once on a clean database:
 1. Create Tables: `docker-compose run --rm api npm run sequelize db:migrate`
 2. Insert Data: `docker-compose run --rm api npm run sequelize db:seed:all`
 
 The database port is mapped to your host machine via Docker Compose so feel free to use your favorite database tools to poke around inside of it.
-
-### Install Dependencies
-1. API: `docker-compose run --rm api npm install`
-2. UI: Coming soon, for now just bower install locally
 
 ### Running
 1. `docker-compose up`
