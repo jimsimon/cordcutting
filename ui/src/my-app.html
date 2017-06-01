@@ -96,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="view404"
             role="main">
           <channel-comparison name="channel-comparison"></channel-comparison>
-          <bundle-wizard name="bundle-wizard"></bundle-wizard>
+          <bundle-wizard name="bundle-wizard" channels="[[channels]]" on-connected="_loadBundleWizardData"></bundle-wizard>
           <page-not-found name="view404"></page-not-found>
         </iron-pages>
       </app-header-layout>
@@ -115,6 +115,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             reflectToAttribute: true,
             observer: '_pageChanged',
           },
+          channels: {
+            type: Array,
+            value: []
+          }
         };
       }
 
@@ -122,6 +126,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return [
           '_routePageChanged(routeData.page)',
         ];
+      }
+
+      async _loadBundleWizardData () {
+        const response = await fetch('http://api.cordcutting.docker/channels')
+        this.channels = await response.json()
       }
 
       _routePageChanged(page) {

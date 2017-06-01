@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="bundle-wizard">
@@ -19,17 +20,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+
+      paper-button {
+        text-transform: none;
+      }
+
+      paper-button[toggles][active] {
+        background: forestgreen;
+        color: white;
+      }
     </style>
 
     <div class="card">
       <h1>Bundle Wizard</h1>
-      <p>Coming Soon!</p>
+      <template is="dom-repeat" items="[[channels]]" as="channel">
+        <paper-button noink raised toggles>[[channel.name]]</paper-button>
+      </template>
     </div>
   </template>
 
   <script>
     class BundleWizard extends Polymer.Element {
-      static get is() { return 'bundle-wizard'; }
+      static get is() { return 'bundle-wizard' }
+
+      static get properties () {
+        return {
+          channels: {
+            type: Array,
+            value: []
+          }
+        }
+      }
+
+      connectedCallback () {
+        super.connectedCallback()
+        this.dispatchEvent(new CustomEvent('connected', {bubbles: true, composed: true}))
+      }
+
     }
 
     window.customElements.define(BundleWizard.is, BundleWizard);

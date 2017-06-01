@@ -24,7 +24,7 @@ app.use('*', function (req, res, next) {
 })
 
 app.use(cors({
-  origin: 'http://ui.cordcutting.com'
+  origin: 'http://ui.cordcutting.docker'
 }))
 app.use(bodyParser.json())
 
