@@ -1,12 +1,11 @@
 version: '3'
 services:
   ui:
-    image: httpd:alpine
+    build:
+      context: ui
     container_name: ui
     volumes:
-      - ./ui:/usr/local/apache2/htdocs/
-    expose:
-      - "80"
+      - ./ui:/usr/src/app
   api:
     image: node:latest
     container_name: api
