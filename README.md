@@ -22,6 +22,10 @@ These commands only need to be executed once on a clean database:
 
 The database port is mapped to your host machine via Docker Compose so feel free to use your favorite database tools to poke around inside of it.
 
+### Install Dependencies
+1. API: `docker-compose run --rm api npm install`
+2. UI: Coming soon, for now just bower install locally
+
 ### Running
 1. `docker-compose up`
 2. Navigate to the desired URL in your favorite web browser:
