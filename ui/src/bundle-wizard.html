@@ -29,13 +29,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background: forestgreen;
         color: white;
       }
+
+      #submit {
+        background: royalblue;
+        color: white;
+      }
     </style>
 
     <div class="card">
       <h1>Bundle Wizard</h1>
       <template is="dom-repeat" items="[[channels]]" as="channel">
-        <paper-button noink raised toggles>[[channel.name]]</paper-button>
+        <paper-button noink raised toggles id="[[channel.name]]" on-active-changed="saveChannelSelection">[[channel.name]]</paper-button>
       </template>
+      <paper-button id="submit" on-click="submitSelection">Submit</paper-button>
     </div>
   </template>
 
@@ -48,15 +54,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           channels: {
             type: Array,
             value: []
+          },
+          selected: {
+            type: Array,
+            value: []
           }
         }
       }
 
       connectedCallback () {
         super.connectedCallback()
-        this.dispatchEvent(new CustomEvent('connected', {bubbles: true, composed: true}))
+        this.dispatchEvent(new CustomEvent('connected', { bubbles: true, composed: true }))
       }
 
+      saveChannelSelection (event) {
+        const name = event.target.id
+        const active = event.target.active
+        const index = this.selected.indexOf(name)
+
+        if (active && index === -1) {
+          this.push('selected', name)
+        } else if (!active && index > -1) {
+          this.splice('selected', index, 1)
+        }
+      }
+
+      submitSelection () {
+        this.dispatchEvent(new CustomEvent('submitted', { detail: this.selected, bubbles: true, composed: true }))
+      }
     }
 
     window.customElements.define(BundleWizard.is, BundleWizard);
