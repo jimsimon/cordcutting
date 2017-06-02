@@ -133,12 +133,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       async _loadBundleWizardData () {
-        const response = await fetch('//api.cordcutting.docker/channels')
+        const response = await fetch('/api/channels')
         this.channels = await response.json()
       }
 
       async _submitChannelSelections (event) {
-        const response = await fetch('//api.cordcutting.docker/wizardResult', {
+        const response = await fetch('/api/wizardResult', {
           method: 'POST',
           headers: new Headers({
             'Content-Type': 'application/json'
