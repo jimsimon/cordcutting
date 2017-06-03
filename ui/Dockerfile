@@ -5,7 +5,6 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 RUN npm install -g bower
-RUN npm install polymer-cli
 
 EXPOSE 8081
 
