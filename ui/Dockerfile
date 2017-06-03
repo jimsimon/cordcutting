@@ -1,9 +1,11 @@
 FROM node:latest
 
-RUN npm install -g polymer-cli
-RUN npm install -g bower
-
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+COPY package.json /usr/src/app/
+RUN npm install
+RUN npm install bower
+RUN npm install polymer-cli
 
 EXPOSE 8081
 
