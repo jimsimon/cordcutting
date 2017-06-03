@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <h1>Bundle Wizard</h1>
       <template is="dom-repeat" items="[[channels]]" as="channel">
-        <paper-button noink raised toggles id="[[channel.name]]" on-active-changed="saveChannelSelection">[[channel.name]]</paper-button>
+        <paper-button noink raised toggles id="[[channel.id]]" on-active-changed="saveChannelSelection">[[channel.name]]</paper-button>
       </template>
       <paper-button id="submit" on-click="submitSelection">Submit</paper-button>
     </div>
@@ -68,12 +68,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       saveChannelSelection (event) {
-        const name = event.target.id
+        const id = event.target.id
         const active = event.target.active
-        const index = this.selected.indexOf(name)
+        const index = this.selected.indexOf(id)
 
         if (active && index === -1) {
-          this.push('selected', name)
+          this.push('selected', id)
         } else if (!active && index > -1) {
           this.splice('selected', index, 1)
         }

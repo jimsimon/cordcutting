@@ -29,7 +29,11 @@ app.use(cors({
 app.use(bodyParser.json())
 
 app.post('/wizardResult', async function (req, res) {
-  const userSelectedChannels = req.body
+  const userSelectedChannels = await Channel.findAll({where: {id: {$in: req.body}}})
+  const userSelectedChannelMap = userSelectedChannels.reduce(function(map, channel) {
+    map.set(channel.id, channel)
+    return map;
+  }, new Map());
 
   const results = []
   const bundles = await Bundle.findAll()
@@ -39,16 +43,14 @@ app.post('/wizardResult', async function (req, res) {
       bundle: bundle.name
     }
 
-    // TODO: Add unique index for name
-    const channels = await bundle.getChannels({where: {name: {$in: userSelectedChannels}}})
-    const foundChannels = channels.map(c => c.name)
-    result.found = foundChannels
+    const bundleChannels = await bundle.getChannels({where: {id: {$in: req.body}}})
+    result.found = bundleChannels
 
-    const userSelectedChannelsSet = new Set(userSelectedChannels)
-    for (const channel of foundChannels) {
-      userSelectedChannelsSet.delete(channel)
+    const missingChannelMap = new Map(userSelectedChannelMap)
+    for (const channel of bundleChannels) {
+      missingChannelMap.delete(channel.id)
     }
-    result.missing = [...userSelectedChannelsSet]
+    result.missing = [...missingChannelMap.values()]
     results.push(result)
   }
   res.json(results)

@@ -48,7 +48,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       _stringifyChannels (channels) {
-        return channels.join(', ')
+        const channelNames = channels.map(c => c.name)
+        return channelNames.join(', ')
       }
     }
 
