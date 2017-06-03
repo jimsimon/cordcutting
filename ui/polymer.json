@@ -2,7 +2,6 @@
   "entrypoint": "index.html",
   "shell": "src/my-app.html",
   "fragments": [
-    "src/channel-comparison.html",
     "src/bundle-wizard.html",
     "src/bundle-wizard-results.html",
     "src/page-not-found.html"
