@@ -4,9 +4,10 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function({Bundle}) {
+      associate: function({Bundle, WizardRequest}) {
         // associations can be defined here
         Channel.belongsToMany(Bundle, {through: 'BundlesChannels',  foreignKey: 'channelId', otherKey: 'bundleId'})
+        Channel.belongsToMany(WizardRequest, {through: 'WizardRequestsChannels', foreignKey: 'channelId', otherKey: 'wizardRequestId'})
       }
     }
   });

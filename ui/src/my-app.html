@@ -101,7 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             channels="[[channels]]"
             on-connected="_loadBundleWizardData"
             on-submitted="_submitChannelSelections"></bundle-wizard>
-          <bundle-wizard-results name="bundle-wizard-results" wizard-results="[[wizardResults]]"></bundle-wizard-results>
+          <bundle-wizard-results name="bundle-wizard-results" wizard-result="[[wizardResult]]"></bundle-wizard-results>
           <page-not-found name="view404"></page-not-found>
         </iron-pages>
       </app-header-layout>
@@ -143,14 +143,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       async _submitChannelSelections (event) {
-        const response = await fetch('/api/wizardResult', {
+        const response = await fetch('/api/wizardResults', {
           method: 'POST',
           headers: new Headers({
             'Content-Type': 'application/json'
           }),
           body: JSON.stringify(event.detail)
         })
-        this.wizardResults = await response.json()
+        this.wizardResult = await response.json()
         this.set('route.path', '/bundle-wizard-results')
       }
 

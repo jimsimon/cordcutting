@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <h1>Bundle Wizard Results</h1>
-      <template is="dom-repeat" items="[[wizardResults]]" as="result">
+      <template is="dom-repeat" items="[[wizardResult.results]]" as="result">
         <div>
           <h2>[[result.provider]]: [[result.bundle]]</h2>
           <div>Included: [[_stringifyChannels(result.found)]]</div>
@@ -40,9 +40,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       static get properties () {
         return {
-          wizardResults: {
-            type: Array,
-            value: []
+          wizardResult: {
+            type: Object,
+            value: {
+                results: []
+            }
           }
         }
       }

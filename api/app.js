@@ -3,7 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const Umzug = require('umzug')
 const { sequelize } = require('./util/sequelize')
-const { Bundle, Channel } = require('./models/index')
+const { Bundle, Channel, WizardRequest } = require('./models/index')
 
 const app = express()
 const umzug = new Umzug({
@@ -28,9 +28,46 @@ app.use(cors({
 }))
 app.use(bodyParser.json())
 
-app.post('/wizardResult', async function (req, res) {
-  const userSelectedChannels = await Channel.findAll({where: {id: {$in: req.body}}})
-  const userSelectedChannelMap = userSelectedChannels.reduce(function(map, channel) {
+app.post('/wizardResults', async function (req, res) {
+
+  const wizardResult = await buildWizardResultForChannels(req.body);
+  res.json(wizardResult)
+})
+
+app.get('/wizardResults', async function (req, res) {
+  const wizardRequestId = req.query.wizardRequestId
+
+  if (!wizardRequestId) {
+    return res.sendStatus(403)
+  }
+
+  const wizardRequest = await WizardRequest.findById(parseInt(wizardRequestId, 10))
+  if (!wizardRequest) {
+    return res.sendStatus(404)
+  }
+
+  const userSelectedChannelIds = await wizardRequest.getChannels({attributes: 'id'})
+  const wizardResult = buildWizardResultForChannels(userSelectedChannelIds)
+
+  res.json(wizardResult)
+})
+
+app.get('/channels', async function (req, res) {
+  const channels = await Channel.findAll({ order: [['name', 'ASC']]})
+  res.json(channels)
+})
+
+const server = app.listen(3000, function () {
+  console.log('API listening on port 3000!')
+})
+
+async function buildWizardResultForChannels(userSelectedChannelIds) {
+  const userSelectedChannels = await Channel.findAll({where: {id: {$in: userSelectedChannelIds}}})
+  const wizardRequest = await WizardRequest.create({
+    Channels: userSelectedChannels
+  })
+
+  const userSelectedChannelMap = userSelectedChannels.reduce(function (map, channel) {
     map.set(channel.id, channel)
     return map;
   }, new Map());
@@ -43,7 +80,7 @@ app.post('/wizardResult', async function (req, res) {
       bundle: bundle.name
     }
 
-    const bundleChannels = await bundle.getChannels({where: {id: {$in: req.body}}})
+    const bundleChannels = await bundle.getChannels({where: {id: {$in: userSelectedChannelIds}}})
     result.found = bundleChannels
 
     const missingChannelMap = new Map(userSelectedChannelMap)
@@ -53,16 +90,10 @@ app.post('/wizardResult', async function (req, res) {
     result.missing = [...missingChannelMap.values()]
     results.push(result)
   }
-  res.json(results)
-})
-
-app.get('/channels', async function (req, res) {
-  const channels = await Channel.findAll({ order: [['name', 'ASC']]})
-  res.json(channels)
-})
-
-const server = app.listen(3000, function () {
-  console.log('API listening on port 3000!')
-})
+  return {
+    wizardRequestId: wizardRequest.id,
+    results
+  };
+}
 
 module.exports = server
