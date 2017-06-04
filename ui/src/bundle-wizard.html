@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="bundle-wizard">
@@ -34,10 +35,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background: royalblue;
         color: white;
       }
+
+      #searchBar {
+
+      }
     </style>
 
     <div class="card">
       <h1>Bundle Wizard</h1>
+      <paper-input></paper-input>
       <template is="dom-repeat" items="[[channels]]" as="channel">
         <paper-button noink raised toggles id="[[channel.id]]" on-active-changed="saveChannelSelection">[[channel.name]]</paper-button>
       </template>

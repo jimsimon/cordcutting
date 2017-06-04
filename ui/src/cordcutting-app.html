@@ -106,6 +106,7 @@
       }
 
       _setupRoutes() {
+        page.redirect('/', '/bundle-wizard')
         this.addRoute(
           '/bundle-wizard',
           'bundle-wizard.html',
@@ -126,6 +127,7 @@
           'page-not-found.html',
           '<page-not-found></page-not-found>'
         )
+
         page.start()
       }
 
