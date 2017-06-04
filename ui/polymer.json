@@ -1,6 +1,6 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
+  "shell": "src/cordcutting-app.html",
   "fragments": [
     "src/bundle-wizard.html",
     "src/bundle-wizard-results.html",
