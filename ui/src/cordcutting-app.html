@@ -53,7 +53,7 @@
     <app-drawer-layout fullbleed>
       <app-drawer id="drawer" slot="drawer">
         <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <iron-selector selected="[[currentPageName]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="bundle-wizard" href="/bundle-wizard">Bundle Wizard</a>
         </iron-selector>
       </app-drawer>
@@ -65,19 +65,6 @@
           </app-toolbar>
         </app-header>
         <div id="content"></div>
-        <!--<iron-pages-->
-          <!--selected="[[page]]"-->
-          <!--attr-for-selected="name"-->
-          <!--fallback-selection="view404"-->
-          <!--role="main">-->
-          <!--<bundle-wizard-->
-            <!--name="bundle-wizard"-->
-            <!--channels="[[channels]]"-->
-            <!--on-connected="_loadBundleWizardData"-->
-            <!--on-submitted="_submitChannelSelections"></bundle-wizard>-->
-          <!--<bundle-wizard-results name="bundle-wizard-results" wizard-result="[[wizardResult]]"></bundle-wizard-results>-->
-          <!--<page-not-found name="view404"></page-not-found>-->
-        <!--</iron-pages>-->
       </app-header-layout>
     </app-drawer-layout>
   </template>
@@ -93,6 +80,7 @@
             type: Array,
             value: [{id: 1, name: "test"}]
           },
+          currentPageName: String,
           wizardResults: {
             type: Array,
             value: []
@@ -107,6 +95,7 @@
 
       _setupRoutes() {
         this.addRoute(
+          'bundle-wizard',
           '/bundle-wizard',
           'bundle-wizard.html',
           `<bundle-wizard
@@ -116,12 +105,14 @@
         )
 
         this.addRoute(
+          'bundle-wizard-results',
           '/bundle-wizard-results',
           'bundle-wizard-results.html',
           '<bundle-wizard-results wizard-result="[[wizardResult]]"></bundle-wizard-results>'
         )
 
         this.addRoute(
+          'page-not-found',
           '*',
           'page-not-found.html',
           '<page-not-found></page-not-found>'
@@ -129,29 +120,34 @@
         page.start()
       }
 
-      addRoute(path, fragmentHref, html) {
+      addRoute(name, path, fragmentHref, html) {
         page(path, () => {
-          this._renderPage(fragmentHref, html)
+          this.loadAndRenderPage(name, fragmentHref, html)
         })
       }
 
-      _renderPage(href, html) {
+      loadAndRenderPage(name, href, html) {
         const resolvedPageUrl = this.resolveUrl(href);
         Polymer.importHref(
           resolvedPageUrl,
           () => {
-            const template = document.createElement('template')
-            template.innerHTML = html
-            const stampedTemplate = this._stampTemplate(template)
-            const currentFragment = this.$.content.firstChild
-            if (currentFragment) {
-              this.$.content.replaceChild(stampedTemplate, currentFragment)
-            } else {
-              this.$.content.appendChild(stampedTemplate)
-            }
+            this.currentPageName = name
+            this.renderPage(html)
           },
           null,
           true)
+      }
+
+      renderPage(html) {
+        const template = document.createElement('template')
+        template.innerHTML = html
+        const stampedTemplate = this._stampTemplate(template)
+        const currentFragment = this.$.content.firstChild
+        if (currentFragment) {
+          this.$.content.replaceChild(stampedTemplate, currentFragment)
+        } else {
+          this.$.content.appendChild(stampedTemplate)
+        }
       }
 
       async _loadBundleWizardData () {
