@@ -109,7 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       filterChannels () {
         if(this.searchTerm.length > 0) {
           this.filteredChannels = this.channels.filter((channel) => {
-            return channel.name.toLowerCase().startsWith(this.searchTerm)
+            return channel.name.toLowerCase().includes(this.searchTerm)
           })
         } else {
           this.filteredChannels = this.channels
