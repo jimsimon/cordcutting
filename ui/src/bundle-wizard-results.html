@@ -17,18 +17,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
+      }
+
+      .result {
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 16px;
+      }
+
+      .included {
+        color: green;
+      }
+
+      .missing {
+        color: red;
       }
     </style>
 
     <div class="card">
       <h1>Bundle Wizard Results</h1>
       <template is="dom-repeat" items="[[wizardResult.results]]" as="result">
-        <div>
+        <div class="result">
           <h2>[[result.provider]]: [[result.bundle]]</h2>
-          <div>Included: [[_stringifyChannels(result.found)]]</div>
-          <div>Missing: [[_stringifyChannels(result.missing)]]</div>
+          <div class="included">Included: [[_stringifyChannels(result.found)]]</div>
+          <div class="missing">Missing: [[_stringifyChannels(result.missing)]]</div>
         </div>
       </template>
     </div>
