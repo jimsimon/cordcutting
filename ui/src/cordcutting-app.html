@@ -158,15 +158,29 @@
       }
 
       async _submitChannelSelections (event) {
+        const channels = event.detail
+
+        const selectedChannelIds = this._getSelectedChannelIds(channels)
+
         const response = await fetch('/api/wizardResults', {
           method: 'POST',
           headers: new Headers({
             'Content-Type': 'application/json'
           }),
-          body: JSON.stringify(event.detail)
+          body: JSON.stringify(selectedChannelIds)
         })
         this.wizardResult = await response.json()
         page('/bundle-wizard-results')
+      }
+
+      _getSelectedChannelIds(channels) {
+        let selectedChannelIds = []
+        channels.forEach(channel => {
+          if(channel.selected) {
+             selectedChannelIds.push(channel.id)
+          }
+        })
+        return selectedChannelIds
       }
     }
 

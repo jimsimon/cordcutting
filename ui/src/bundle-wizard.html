@@ -118,7 +118,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       submitSelection () {
-        this.dispatchEvent(new CustomEvent('submitted', { detail: this.selected, bubbles: true, composed: true }))
+        this.dispatchEvent(new CustomEvent('submitted', { detail: this.channels, bubbles: true, composed: true }))
       }
 
       isFiltered (channel) {
