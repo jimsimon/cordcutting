@@ -28,30 +28,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-transform: none;
       }
 
+      paper-button[toggles] {
+        border: 1px solid forestgreen;
+        margin-bottom: 10px;
+      }
+
       paper-button[toggles][active] {
         background: forestgreen;
         color: white;
       }
 
-      #submit {
+      #submit, #clear {
         background: royalblue;
         color: white;
       }
 
-      #searchBar {
+      #header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin: 0 10px 10px;
+        height: 40px
+      }
 
+      #header > h1 {
+        margin: 0;
+      }
+
+      #actionButtons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
       }
     </style>
 
     <div class="card">
-      <h1>Bundle Wizard</h1>
-      <paper-input label="Search channels" value="{{searchTerm}}">
-        <iron-icon icon="search" slot="prefix"></iron-icon>
-      </paper-input>
+      <div id="header">
+        <h1>Bundle Wizard</h1>
+        <paper-input label="Search channels" value="{{searchTerm}}">
+          <iron-icon icon="search" slot="prefix"></iron-icon>
+        </paper-input>
+      </div>
       <template id="channelsList" is="dom-repeat" items="{{channels}}" as="channel" filter="isFiltered">
-        <paper-button noink raised toggles id="[[channel.id]]" on-active-changed="saveChannelSelection" active="[[channel.selected]]">[[channel.name]]</paper-button>
+        <paper-button noink toggles id="[[channel.id]]" on-active-changed="saveChannelSelection" active="[[channel.selected]]">[[channel.name]]</paper-button>
       </template>
-      <paper-button id="submit" on-click="submitSelection">Submit</paper-button>
+      <div id="actionButtons">
+        <paper-button id="clear" on-click="clearSelection">Clear</paper-button>
+        <paper-button id="submit" on-click="submitSelection">Submit</paper-button>
+      </div>
     </div>
   </template>
 
@@ -82,10 +106,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       saveChannelSelection (event) {
         const id = event.target.id
         const active = event.target.active
-        const index = this.channels.findIndex(channel => channel.id == id)
-
+        const index = this.channels.findIndex(channel => channel.id === id)
 
         this.channels[index].selected = active
+      }
+
+      clearSelection () {
+        for (const channel of this.channels) {
+          channel.selected = false
+        }
       }
 
       submitSelection () {
