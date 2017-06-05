@@ -45,11 +45,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <h1>Bundle Wizard</h1>
-      <paper-input label="Search channels" on-input="filterChannels" value="{{searchTerm}}">
+      <paper-input label="Search channels" value="{{searchTerm}}">
         <iron-icon icon="search" slot="prefix"></iron-icon>
       </paper-input>
-      <template is="dom-repeat" items="[[filteredChannels]]" as="channel">
-        <paper-button noink raised toggles id="[[channel.id]]" on-active-changed="saveChannelSelection">[[channel.name]]</paper-button>
+      <template id="channelsList" is="dom-repeat" items="{{channels}}" as="channel" filter="isFiltered">
+        <paper-button noink raised toggles id="[[channel.id]]" on-active-changed="saveChannelSelection" active="[[channel.selected]]">[[channel.name]]</paper-button>
       </template>
       <paper-button id="submit" on-click="submitSelection">Submit</paper-button>
     </div>
@@ -66,13 +66,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             value: [],
             observer: '_onChannelsChanged'
           },
-          selected: {
-            type: Array,
-            value: []
-          },
           searchTerm: {
             type: String,
-            value: ""
+            value: "",
+            observer: '_onSearchTermChanged'
           },
           filteredChannels: {
             type: Array,
@@ -86,34 +83,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.dispatchEvent(new CustomEvent('connected', { bubbles: true, composed: true }))
       }
 
-      _onChannelsChanged (newChannels) {
-        this.filteredChannels = newChannels
-      }
-
       saveChannelSelection (event) {
         const id = event.target.id
         const active = event.target.active
-        const index = this.selected.indexOf(id)
+        const index = this.channels.findIndex(channel => channel.id == id)
 
-        if (active && index === -1) {
-          this.push('selected', id)
-        } else if (!active && index > -1) {
-          this.splice('selected', index, 1)
-        }
+
+        this.channels[index].selected = active
       }
 
       submitSelection () {
         this.dispatchEvent(new CustomEvent('submitted', { detail: this.selected, bubbles: true, composed: true }))
       }
 
-      filterChannels () {
+      isFiltered (channel) {
         if(this.searchTerm.length > 0) {
-          this.filteredChannels = this.channels.filter((channel) => {
-            return channel.name.toLowerCase().includes(this.searchTerm)
-          })
+          return channel.name.toLowerCase().includes(this.searchTerm.toLowerCase())
         } else {
-          this.filteredChannels = this.channels
+          return true;
         }
+      }
+
+      _onSearchTermChanged (newSearchTerm) {
+        this.$.channelsList.render()
       }
     }
 
