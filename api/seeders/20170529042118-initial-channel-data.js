@@ -34,8 +34,8 @@ const channels = [
   'Local Now',
   'Flama',
   'Galavisión',
-  'FOX RSNs',
-  'NBC RSNs',
+  'FOX Sports (Regional)',
+  'NBC Sports (Regional)',
   'NFL Network',
   'FX',
   'USA',
@@ -51,7 +51,9 @@ const channels = [
   'National Geographic',
   'Nat Geo Wild',
   'Univision',
-  'UniMás'
+  'UniMás',
+  'Tribeca Shortlist',
+  'CSN (Regional)'
 ]
 
 module.exports = {
