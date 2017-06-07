@@ -35,8 +35,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <h1>Bundle Wizard Results</h1>
-      <template is="dom-repeat" items="[[wizardResult.results]]" as="result">
+      <div>
+        <h1>Bundle Wizard Results</h1>
+        <label>
+          Sort By:
+          <select value="{{sort::change}}">
+            <option value="sortByIncluded" selected>Most Channels Matching</option>
+          </select>
+        </label>
+      </div>
+      <template is="dom-repeat" items="[[wizardResult.results]]" as="result" sort="[[sort]]">
         <div class="result">
           <h2>[[result.provider]]: [[result.bundle]]</h2>
           <div class="included">Included: [[_stringifyChannels(result.found)]]</div>
@@ -57,8 +65,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             value: {
                 results: []
             }
+          },
+          sort: {
+            type: String,
+            value: 'sortByIncluded'
           }
         }
+      }
+
+      sortByIncluded (firstResult, secondResult) {
+        return secondResult.found.length - firstResult.found.length
       }
 
       _stringifyChannels (channels) {
