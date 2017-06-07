@@ -1,6 +1,8 @@
 'use strict';
-const { Channel, Bundle } = require('../models/index')
-const slingBlueChannels = ['AMC', 'CNN', 'HGTV', 'Comedy Central', 'Cartoon Network',
+const SeederUtil = require('./util/seeder-util')
+
+const channels = [
+  'AMC', 'CNN', 'HGTV', 'Comedy Central', 'Cartoon Network',
   'History Channel', 'TNT', 'Food Network', 'TBS', 'BBC America', 'IFC', 'Tribeca Shortlist',
   'A&E', 'El Rey', 'Viceland', 'Lifetime', 'Travel Channel', 'AXS TV', 'Newsy', 'Cheddar',
   'Bloomberg Television', 'Local Now', 'Flama', 'Galavisión', 'FOX', 'NBC', 'FOX Sports (Regional)',
@@ -10,28 +12,11 @@ const slingBlueChannels = ['AMC', 'CNN', 'HGTV', 'Comedy Central', 'Cartoon Netw
 ]
 
 module.exports = {
-  up: function (queryInterface, Sequelize) {
-    return Bundle.findOne({where: {name: 'Blue'}}).then(bundle => {
-      return Channel.findAll({where: { name: { $in: slingBlueChannels }}}).then(channels => {
-        return bundle.addChannels(channels).then(() => {
-          return bundle.getChannels().then(channels => {
-            if (channels.length !== slingBlueChannels.length) {
-              const missingChannels = new Set(slingBlueChannels)
-              for (const channel of channels) {
-                missingChannels.delete(channel.name)
-              }
-              throw new Error(`Failed to add the following channels: ${[...missingChannels.join(',')]}`)
-            } else {
-              console.log(`Bundle '${bundle.name}' created successfully!`)
-            }
-          })
-        })
-      })
-    })
+  up: async function (queryInterface, Sequelize) {
+    await new SeederUtil().addChannelsToBundle('Blue', channels)
   },
 
   down: async function (queryInterface, Sequelize) {
-    const bundle = await Bundle.findOne({where: {name: 'Blue'}})
-    return await bundle.removeChannels({where: {name: {$in: slingBlueChannels}}})
+    await new SeederUtil().removeChannelsFromBundle('Blue', channels)
   }
 };

@@ -10,6 +10,9 @@ const providers = [
       },
       {
         name: 'Orange'
+      },
+      {
+        name: 'Orange + Blue'
       }
     ]
   },
