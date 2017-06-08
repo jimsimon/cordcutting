@@ -6,14 +6,18 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT
+        type: Sequelize.INTEGER
       },
       name: {
         allowNull: false,
         type: Sequelize.STRING
       },
+      price: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
       providerId: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         references: {
           model: 'Providers',
           key: 'id'

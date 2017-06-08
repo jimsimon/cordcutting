@@ -105,7 +105,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       saveChannelSelection (event) {
         const id = event.target.id
         const active = event.target.active
-        const index = this.channels.findIndex(channel => channel.id === id)
+        const index = this.channels.findIndex(channel => channel.id === parseInt(id, 10))
 
         this.channels[index].selected = active
       }

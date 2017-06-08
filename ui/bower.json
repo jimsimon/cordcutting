@@ -20,7 +20,10 @@
     "paper-button": "PolymerElements/paper-button#^2.0.0",
     "page": "visionmedia/page.js#^1.7.1",
     "paper-input": "^2.0.0",
-    "iron-icons": "^2.0.0"
+    "iron-icons": "^2.0.0",
+    "paper-dropdown-menu": "^2.0.0",
+    "paper-listbox": "^2.0.0",
+    "paper-item": "^2.0.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"

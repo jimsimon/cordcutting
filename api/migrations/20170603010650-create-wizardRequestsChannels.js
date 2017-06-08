@@ -4,7 +4,7 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('WizardRequestsChannels', {
       wizardRequestId: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         references: {
           model: 'WizardRequests',
           key: 'id'
@@ -13,7 +13,7 @@ module.exports = {
         onDelete: 'cascade'
       },
       channelId: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.INTEGER,
         references: {
           model: 'Channels',
           key: 'id'

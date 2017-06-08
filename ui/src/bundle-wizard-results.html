@@ -10,6 +10,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="bundle-wizard-results">
@@ -18,6 +21,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
         padding: 10px;
+      }
+
+      #header {
+        display: flex;
+        justify-content: space-between;
       }
 
       .result {
@@ -35,18 +43,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <div class="card">
-      <div>
+      <div id="header">
         <h1>Bundle Wizard Results</h1>
-        <label>
-          Sort By:
-          <select value="{{sort::change}}">
-            <option value="sortByIncluded" selected>Most Channels Matching</option>
-          </select>
-        </label>
+        <paper-dropdown-menu label="Sort" noink no-animations="">
+          <paper-listbox slot="dropdown-content" selected="{{sort}}" attr-for-selected="id">
+            <paper-item id="sortByFound">Channels Found</paper-item>
+            <paper-item id="sortByTotalPrice">Total Price</paper-item>
+            <paper-item id="sortByPricePerChannel">Price Per Channel</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
       </div>
       <template is="dom-repeat" items="[[wizardResult.results]]" as="result" sort="[[sort]]">
         <div class="result">
           <h2>[[result.provider]]: [[result.bundle]]</h2>
+          <div>Price: [[result.totalPrice]]</div>
           <div class="included">Included: [[_stringifyChannels(result.found)]]</div>
           <div class="missing">Missing: [[_stringifyChannels(result.missing)]]</div>
         </div>
@@ -68,13 +78,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           sort: {
             type: String,
-            value: 'sortByIncluded'
+            value: 'sortByFound'
           }
         }
       }
 
-      sortByIncluded (firstResult, secondResult) {
+      sortByFound (firstResult, secondResult) {
         return secondResult.found.length - firstResult.found.length
+      }
+
+      sortByTotalPrice (firstResult, secondResult) {
+        return firstResult.totalPrice - secondResult.totalPrice
+      }
+
+      sortByPricePerChannel (firstResult, secondResult) {
+        // Divide by zero is serious business
+        if (firstResult.found.length === 0 && secondResult.found.length > 0) {
+          return 1
+        }
+        if (secondResult.found.length === 0 && firstResult.found.length > 0) {
+          return -1
+        }
+        if (secondResult.found.length === 0 && firstResult.found.length === 0) {
+          return 0
+        }
+        return (firstResult.totalPrice/firstResult.found.length) - (secondResult.totalPrice/secondResult.found.length)
       }
 
       _stringifyChannels (channels) {

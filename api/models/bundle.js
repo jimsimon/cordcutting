@@ -1,7 +1,8 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Bundle = sequelize.define('Bundle', {
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    price: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function({Channel, Provider}) {

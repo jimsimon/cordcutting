@@ -57,10 +57,6 @@ app.get('/channels', async function (req, res) {
   res.json(channels)
 })
 
-const server = app.listen(3000, function () {
-  console.log('API listening on port 3000!')
-})
-
 async function buildWizardResultForChannels(userSelectedChannelIds) {
   const userSelectedChannels = await Channel.findAll({where: {id: {$in: userSelectedChannelIds}}})
   const wizardRequest = await WizardRequest.create({
@@ -77,7 +73,8 @@ async function buildWizardResultForChannels(userSelectedChannelIds) {
   for (const bundle of bundles) {
     const result = {
       provider: (await bundle.getProvider()).name,
-      bundle: bundle.name
+      bundle: bundle.name,
+      totalPrice: bundle.price // TODO: Change this when addons are added in
     }
 
     const bundleChannels = await bundle.getChannels({where: {id: {$in: userSelectedChannelIds}}})
@@ -95,5 +92,9 @@ async function buildWizardResultForChannels(userSelectedChannelIds) {
     results
   };
 }
+
+const server = app.listen(3000, function () {
+  console.log('API listening on port 3000!')
+})
 
 module.exports = server

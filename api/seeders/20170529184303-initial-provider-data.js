@@ -6,13 +6,16 @@ const providers = [
     name: 'Sling TV',
     Bundles: [
       {
-        name: 'Blue'
+        name: 'Blue',
+        price: 2500
       },
       {
-        name: 'Orange'
+        name: 'Orange',
+        price: 2000
       },
       {
-        name: 'Orange + Blue'
+        name: 'Orange + Blue',
+        price: 4000
       }
     ]
   },
@@ -20,16 +23,20 @@ const providers = [
     name: 'PlayStation Vue',
     Bundles: [
       {
-        name: 'Access Slim'
+        name: 'Access Slim',
+        price: 2999
       },
       {
-        name: 'Core Slim'
+        name: 'Core Slim',
+        price: 3499
       },
       {
-        name: 'Elite Slim'
+        name: 'Elite Slim',
+        price: 4499
       },
       {
-        name: 'Ultra Slim'
+        name: 'Ultra Slim',
+        price: 6499
       }
     ]
   },
@@ -37,7 +44,8 @@ const providers = [
     name: 'Hulu Live',
     Bundles: [
       {
-        name: 'Standard'
+        name: 'Standard',
+        price: 3999
       }
     ]
   },
@@ -45,30 +53,37 @@ const providers = [
     name: 'fuboTV',
     Bundles: [
       {
-        name: 'fubo Premier'
+        name: 'fubo Premier',
+        price: 3499
       },
       {
-        name: 'fubo Latino'
+        name: 'fubo Latino',
+        price: 1499
       },
       {
-        name: 'fubo Português'
+        name: 'fubo Português',
+        price: 1999
       }
     ]
   },
   {
-    name: 'DirectTV Now',
+    name: 'DirecTV Now',
     Bundles: [
       {
-        name: 'Live A Little'
+        name: 'Live A Little',
+        price: 3500
       },
       {
-        name: 'Just Right'
+        name: 'Just Right',
+        price: 5000
       },
       {
-        name: 'Go Big'
+        name: 'Go Big',
+        price: 6000
       },
       {
-        name: 'Gotta Have It'
+        name: 'Gotta Have It',
+        price: 7000
       }
     ]
   },
@@ -76,7 +91,8 @@ const providers = [
     name: 'YouTube Live',
     Bundles: [
       {
-        name: 'Standard'
+        name: 'Standard',
+        price: 3500
       }
     ]
   }
