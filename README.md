@@ -39,7 +39,7 @@ The database port is mapped to your host machine via Docker Compose so feel free
 #### Stop, Rebuild, and Start the database
 This one comes in handy when messing around with Sequelize stuff
 
-`docker-compose stop db; docker-compose rm -f db; docker-compose run --rm api npm run sequelize db:migrate; docker-compose run --rm api npm run sequelize db:seed:all; docker-compose start db`
+`docker-compose stop db; docker-compose rm -f db; docker-compose run --rm api npm run sequelize db:migrate; docker-compose run --rm api npm run sequelize db:seed:all`
 
 ### Testing
 There aren't any tests yet but we'll have some soon!
