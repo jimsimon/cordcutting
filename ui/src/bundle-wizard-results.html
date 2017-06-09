@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-listbox>
         </paper-dropdown-menu>
       </div>
-      <template is="dom-repeat" items="[[wizardResult.results]]" as="result" filter="filter" sort="[[sort]]">
+      <template is="dom-repeat" items="[[wizardResult.results]]" as="result" filter="filterOutBundlesWithNoMatches" sort="[[sort]]">
         <div class="result">
           <h2>[[result.provider]]: [[result.bundle]]</h2>
           <div>Price: [[formatCurrency(result.totalPrice)]]</div>
@@ -94,7 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return BundleWizardResults.currencyFormatter.format(amount/100)
       }
 
-      filter (result) {
+      filterOutBundlesWithNoMatches (result) {
         return result.found.length > 0
       }
 
