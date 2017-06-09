@@ -15,6 +15,6 @@ module.exports = {
   },
 
   down: async function (queryInterface, Sequelize) {
-    await new SeederUtil().removeChannelsFromBundle('Sling TV', 'Orange', channels)
+    await new SeederUtil().removeChannelsFromBundle('Sling TV', 'Orange')
   }
 };

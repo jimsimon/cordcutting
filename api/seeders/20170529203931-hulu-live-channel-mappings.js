@@ -18,6 +18,6 @@ module.exports = {
   },
 
   down: async function (queryInterface, Sequelize) {
-    await new SeederUtil().removeChannelsFromBundle('Hulu Live', 'Standard', channels)
+    await new SeederUtil().removeChannelsFromBundle('Hulu Live', 'Standard')
   }
 };

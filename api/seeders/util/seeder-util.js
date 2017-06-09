@@ -23,11 +23,11 @@ class SeederUtil {
     console.log(`Successfully added ${channels.length} channels to ${bundleName}`)
   }
 
-  async removeChannelsFromBundle(providerName, bundleName, channelNames) {
+  async removeChannelsFromBundle(providerName, bundleName) {
     const provider = await Provider.findOne({where: {name: providerName}})
     const bundles = await provider.getBundles({where: {name: bundleName}})
     const bundle = bundles[0]
-    return await bundle.removeChannels({where: {name: {$in: channelNames}}})
+    return await bundle.removeChannels()
   }
 
   async createChannelsIfNeeded(bundleName, channelNames) {

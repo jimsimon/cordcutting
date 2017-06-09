@@ -110,6 +110,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    return Provider.destroy({ where: { name: { $in: providers }}})
+    return Provider.destroy({ where: { name: { $in: providers.map(p => p.name) }}})
   }
 }
