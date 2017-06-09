@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-listbox>
         </paper-dropdown-menu>
       </div>
-      <template is="dom-repeat" items="[[wizardResult.results]]" as="result" sort="[[sort]]">
+      <template is="dom-repeat" items="[[wizardResult.results]]" as="result" filter="filter" sort="[[sort]]">
         <div class="result">
           <h2>[[result.provider]]: [[result.bundle]]</h2>
           <div>Price: [[result.totalPrice]]</div>
@@ -83,8 +83,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
+      filter (result) {
+        return result.found.length > 0
+      }
+
       sortByFound (firstResult, secondResult) {
-        return secondResult.found.length - firstResult.found.length
+        const lengthSort = secondResult.found.length - firstResult.found.length
+        if (lengthSort !== 0) {
+          return lengthSort
+        }
+
+        return this.sortByTotalPrice(firstResult, secondResult)
       }
 
       sortByTotalPrice (firstResult, secondResult) {
