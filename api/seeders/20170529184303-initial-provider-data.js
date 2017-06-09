@@ -88,7 +88,7 @@ const providers = [
     ]
   },
   {
-    name: 'YouTube Live',
+    name: 'YouTube TV',
     Bundles: [
       {
         name: 'Standard',

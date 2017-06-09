@@ -11,10 +11,10 @@ const channels = [
 
 module.exports = {
   up: async function (queryInterface, Sequelize) {
-    await new SeederUtil().addChannelsToBundle('Orange', channels)
+    await new SeederUtil().addChannelsToBundle('Sling TV', 'Orange', channels)
   },
 
   down: async function (queryInterface, Sequelize) {
-    await new SeederUtil().removeChannelsFromBundle('Orange', channels)
+    await new SeederUtil().removeChannelsFromBundle('Sling TV', 'Orange', channels)
   }
 };
