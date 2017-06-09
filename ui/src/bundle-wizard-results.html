@@ -56,7 +56,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <template is="dom-repeat" items="[[wizardResult.results]]" as="result" filter="filter" sort="[[sort]]">
         <div class="result">
           <h2>[[result.provider]]: [[result.bundle]]</h2>
-          <div>Price: [[result.totalPrice]]</div>
+          <div>Price: [[formatCurrency(result.totalPrice)]]</div>
           <div class="included">Included: [[_stringifyChannels(result.found)]]</div>
           <div class="missing">Missing: [[_stringifyChannels(result.missing)]]</div>
         </div>
@@ -81,6 +81,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             value: 'sortByFound'
           }
         }
+      }
+
+      static get currencyFormatter () {
+        return new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD'
+        })
+      }
+
+      formatCurrency (amount) {
+        return BundleWizardResults.currencyFormatter.format(amount/100)
       }
 
       filter (result) {
