@@ -57,6 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="result">
           <h2>[[result.provider]]: [[result.bundle]]</h2>
           <div>Price: [[formatCurrency(result.totalPrice)]]</div>
+          <div>Price/Channel: [[calculatePricePerChannel(result)]]</div>
           <div class="included">Included: [[_stringifyChannels(result.found)]]</div>
           <div class="missing">Missing: [[_stringifyChannels(result.missing)]]</div>
         </div>
@@ -78,7 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           },
           sort: {
             type: String,
-            value: 'sortByFound'
+            value: 'sortByBestMatch'
           }
         }
       }
@@ -99,16 +100,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       sortByBestMatch (firstResult, secondResult) {
-        const lengthSort = secondResult.found.length - firstResult.found.length
-        if (lengthSort !== 0) {
-          return lengthSort
+        const foundSort = this.sortByChannelsFound(firstResult, secondResult)
+        if (foundSort !== 0) {
+          return foundSort
         }
 
         return this.sortByTotalPrice(firstResult, secondResult)
       }
 
+      sortByChannelsFound (firstResult, secondResult) {
+        return secondResult.found.length - firstResult.found.length
+      }
+
       sortByTotalPrice (firstResult, secondResult) {
-        return firstResult.totalPrice - secondResult.totalPrice
+        const totalPriceSort = firstResult.totalPrice - secondResult.totalPrice
+        if (totalPriceSort !== 0) {
+          return totalPriceSort
+        }
+        return this.sortByChannelsFound(firstResult, secondResult)
       }
 
       sortByPricePerChannel (firstResult, secondResult) {
@@ -122,7 +131,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (secondResult.found.length === 0 && firstResult.found.length === 0) {
           return 0
         }
-        return (firstResult.totalPrice/firstResult.found.length) - (secondResult.totalPrice/secondResult.found.length)
+        const pricePerChannelSort = (firstResult.totalPrice/firstResult.found.length) - (secondResult.totalPrice/secondResult.found.length)
+        if (pricePerChannelSort !== 0) {
+            return pricePerChannelSort
+        }
+        return this.sortByChannelsFound(firstResult, secondResult)
+      }
+
+      calculatePricePerChannel (result) {
+        if (result.found.length === 0) {
+          return 'N/A'
+        }
+        return this.formatCurrency(result.totalPrice/result.found.length)
       }
 
       _stringifyChannels (channels) {
