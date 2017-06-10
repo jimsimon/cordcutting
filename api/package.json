@@ -22,6 +22,7 @@
     "sequelize-cli": "^2.7.0"
   },
   "scripts": {
+    "console": "node bin/console.js",
     "privisionDatabase": "npm run migrateDatabase; npm run seedDatabase",
     "migrateDatabase": "docker-compose run --rm api npm run sequelize db:migrate",
     "seedDatabase": "docker-compose run --rm api npm run sequelize db:seed:all",
