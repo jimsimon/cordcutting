@@ -47,9 +47,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h1>Bundle Wizard Results</h1>
         <paper-dropdown-menu label="Sort" noink no-animations="">
           <paper-listbox slot="dropdown-content" selected="{{sort}}" attr-for-selected="id">
-            <paper-item id="sortByFound">Channels Found</paper-item>
+            <paper-item id="sortByBestMatch">Best Match</paper-item>
             <paper-item id="sortByTotalPrice">Total Price</paper-item>
-            <paper-item id="sortByPricePerChannel">Price Per Channel</paper-item>
+            <paper-item id="sortByPricePerChannel">Price/Channel</paper-item>
           </paper-listbox>
         </paper-dropdown-menu>
       </div>
@@ -98,7 +98,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return result.found.length > 0
       }
 
-      sortByFound (firstResult, secondResult) {
+      sortByBestMatch (firstResult, secondResult) {
         const lengthSort = secondResult.found.length - firstResult.found.length
         if (lengthSort !== 0) {
           return lengthSort
