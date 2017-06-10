@@ -10,7 +10,7 @@ const channels = [
   'DIY', 'E!', 'Epix Hits', 'ESPN', 'ESPN Deportes',
   'ESPN2', 'ESPNews', 'ESPNU', 'esportsTV', 'Esquire',
   'Food Network', 'FOX Business', 'FOX College Sports Atlantic', 'FOX College Sports Central', 'FOX College Sports Pacific',
-  'FOX Deportes', 'FOX News', 'FOX Sports (Regional)', 'Freeform', 'Fox Sports 1',
+  'FOX Deportes', 'FOX News', 'FOX Sports (Regional)', 'Freeform', 'FOX Sports 1',
   'FOX Sports 2', 'Fusion', 'FX', 'FXM', 'FXX',
   'GINX Esports TV', 'Golf', 'HGTV', 'Hi-Yah TV',
   'HLN', 'IFC', 'Impact', 'Investigation Discovery', 'Machinima',

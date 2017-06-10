@@ -10,7 +10,7 @@ const channels = [
   'DIY', 'E!', 'ESPN',
   'ESPN2',
   'Food Network', 'FOX Business',
-  'FOX News', 'Freeform', 'Fox Sports 1',
+  'FOX News', 'Freeform', 'FOX Sports 1',
   'FOX Sports 2', 'FX', 'FXX',
   'HGTV',
   'HLN', 'Investigation Discovery',
