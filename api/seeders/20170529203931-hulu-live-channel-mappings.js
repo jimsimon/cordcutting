@@ -6,7 +6,7 @@ const channels = [
   'Bravo', 'Cartoon Network', 'CBS Sports Network', 'Chiller', 'CNBC', 'CNN', 'CNN International',
   'Disney', 'Disney Junior', 'Disney XD', 'E!', 'ESPN', 'ESPN2', 'ESPNews',
   'ESPNU', 'Food Network', 'FOX Business', 'FOX News', 'FOX Sports 1', 'FOX Sports 2', 'Freeform',
-  'FX', 'FXM', 'FXX', 'FYI', 'Golf', 'HGTV', 'History Channel',
+  'FX', 'FXM', 'FXX', 'FYI', 'Golf Channel', 'HGTV', 'History Channel',
   'HLN', 'Lifetime', 'LMN', 'MSNBC', 'National Geographic', 'Nat Geo Wild', 'NBC Sports Network',
   'Oxygen', 'Pop', 'SEC Network', 'Sprout', 'Syfy', 'TBS', 'TCM',
   'TNT', 'Travel Channel', 'truTV', 'USA', 'Viceland'

@@ -7,8 +7,8 @@ const channels = [
   'FX', 'Freeform', 'Disney', 'E!', 'ESPN2', 'FOX Sports 2',
   'Big Ten Network', 'SEC Network', 'ESPNU', 'ESPNews', 'Bravo', 'Oxygen',
   'IFC', 'FXX', 'NBC Universo', 'Syfy', 'Disney Junior', 'Disney XD',
-  'Sprout', 'CBS Sports Network', 'NBC Sports Network', 'Golf', 'MSNBC', 'FOX News',
-  'CNBC', 'FOX Business', 'SundanceTV', 'National Geographic', 'Nat Geo Wild', 'WE',
+  'Sprout', 'CBS Sports Network', 'NBC Sports Network', 'Golf Channel', 'MSNBC', 'FOX News',
+  'CNBC', 'FOX Business', 'Sundance TV', 'National Geographic', 'Nat Geo Wild', 'WE',
   'BBC America', 'FXM', 'Universal HD', 'Chiller', 'YouTube Red Originals'
 ]
 

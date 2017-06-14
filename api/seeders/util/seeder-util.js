@@ -14,10 +14,11 @@ class SeederUtil {
       throw new Error('Channel names must be specified')
     }
 
+    await this.throwIfChannelsMissing(bundleName, channelNames)
+
     const provider = await Provider.findOne({where: {name: providerName}})
     const bundles = await provider.getBundles({where: {name: bundleName}})
     const bundle = bundles[0]
-    await this.createChannelsIfNeeded(bundleName, channelNames)
     const channels = await Channel.findAll({where: {name: {$in: channelNames }}})
     await bundle.addChannels(channels)
     console.log(`Successfully added ${channels.length} channels to ${bundleName}`)
@@ -30,15 +31,16 @@ class SeederUtil {
     return await bundle.removeChannels()
   }
 
-  async createChannelsIfNeeded(bundleName, channelNames) {
+  async throwIfChannelsMissing(bundleName, channelNames) {
     const existingChannels = await Channel.findAll({where: {name: { $in: channelNames }}})
-    const newChannels = new Set(channelNames)
+    const channelsThatNeedCreation = new Set(channelNames)
     for (const existingChannel of existingChannels) {
-      newChannels.delete(existingChannel.name)
+      channelsThatNeedCreation.delete(existingChannel.name)
     }
-    const newChannelObjects = [...newChannels].map(c => ({name: c}))
-    const createdChannels = await Channel.bulkCreate(newChannelObjects)
-    console.log(`Created ${createdChannels.length} channels for "${bundleName}"`)
+
+    if (channelsThatNeedCreation.size > 0) {
+      throw new Error(`The following channels to be created before ${bundleName} can be created: ${[...channelsThatNeedCreation].join(', ')}`)
+    }
   }
 }
 

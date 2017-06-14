@@ -5,7 +5,7 @@ const channels = [
   'ESPN', 'AMC', 'CNN', 'HGTV', 'Comedy Central', 'Cartoon Network', 'History Channel',
   'Disney', 'ESPN2', 'ESPN3', 'TNT', 'Food Network', 'TBS', 'BBC America',
   'Freeform', 'IFC', 'Tribeca Shortlist', 'A&E', 'El Rey', 'Viceland',
-  'Lifetime', 'Travel Channel', 'AXS TV', 'Newsy', 'Cheddar', 'Bloomberg Television', 'Local Now', 'Flama',
+  'Lifetime', 'Travel Channel', 'AXS TV', 'Newsy', 'Cheddar', 'Bloomberg TV', 'Local Now', 'Flama',
   'Galavisión'
 ]
 

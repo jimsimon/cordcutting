@@ -12,7 +12,7 @@ const channels = [
   'Food Network', 'FOX Business',
   'FOX News', 'FOX Sports (Regional)', 'Freeform', 'FOX Sports 1',
   'FOX Sports 2', 'FX', 'FXX',
-  'Golf', 'HGTV',
+  'Golf Channel', 'HGTV',
   'HLN', 'IFC', 'Investigation Discovery',
   'MLB Network', 'MSNBC', 'National Geographic',
   'NBA TV', 'NBC Sports Network', 'NFL Network',
