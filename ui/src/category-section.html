@@ -1,0 +1,79 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="category-section">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      paper-button {
+        text-transform: none;
+      }
+
+      paper-button[toggles] {
+        border: 1px solid forestgreen;
+        margin-bottom: 10px;
+      }
+
+      paper-button[toggles][active] {
+        background: forestgreen;
+        color: white;
+      }
+    </style>
+    <h2>[[category.name]]</h2>
+    <template id="channelsList" is="dom-repeat" items="[[category.Channels]]" as="channel" filter="isFiltered">
+      <paper-button noink toggles id="[[channel.id]]" on-active-changed="saveChannelSelection" active="[[channel.selected]]">[[channel.name]]</paper-button>
+    </template>
+  </template>
+
+  <script>
+    class CategorySection extends Polymer.Element {
+      static get is() { return 'category-section' }
+
+      static get properties() {
+        return {
+          category: Object,
+          searchTerm: {
+            type: String,
+            value: "",
+            observer: '_onSearchTermChanged'
+          }
+        }
+      }
+
+      isFiltered (channel) {
+        if(this.searchTerm.length > 0) {
+          return channel.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+        } else {
+          return true;
+        }
+      }
+
+      _onSearchTermChanged (newSearchTerm) {
+        this.$.channelsList.render()
+      }
+
+      saveChannelSelection (event) {
+        const id = event.target.id
+        const active = event.target.active
+        const index = this.category.Channels.findIndex(channel => channel.id === parseInt(id, 10))
+
+        this.category.Channels[index].selected = active
+      }
+    }
+
+    window.customElements.define(CategorySection.is, CategorySection);
+  </script>
+</dom-module>

@@ -96,7 +96,7 @@
 
       static get properties() {
         return {
-          channels: {
+          categories: {
             type: Array,
             value: []
           },
@@ -132,7 +132,7 @@
           '/bundle-wizard',
           'bundle-wizard.html',
           `<bundle-wizard
-            channels="[[channels]]"
+            categories="[[categories]]"
             on-connected="_loadBundleWizardData"
             on-submitted="_submitChannelSelections"></bundle-wizard>`
         )
@@ -185,8 +185,8 @@
       }
 
       async _loadBundleWizardData () {
-        const response = await fetch('/api/channels')
-        this.channels = await response.json()
+        const response = await fetch('/api/categories')
+        this.categories = await response.json()
       }
 
       async _submitChannelSelections (event) {

@@ -3,7 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const Umzug = require('umzug')
 const { sequelize } = require('./util/sequelize')
-const { Bundle, Channel, WizardRequest } = require('./models/index')
+const { Bundle, Category, Channel, WizardRequest } = require('./models/index')
 
 const app = express()
 const umzug = new Umzug({
@@ -52,9 +52,9 @@ app.get('/wizardResults', async function (req, res) {
   res.json(wizardResult)
 })
 
-app.get('/channels', async function (req, res) {
-  const channels = await Channel.findAll({ order: [['name', 'ASC']]})
-  res.json(channels)
+app.get('/categories', async function (req, res) {
+  const categories = await Category.findAll({ order: [['name', 'ASC'], [Channel, 'name', 'ASC']], include: [Channel]})
+  res.json(categories)
 })
 
 async function buildWizardResultForChannels(userSelectedChannelIds) {

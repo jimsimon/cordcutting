@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="category-section.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="bundle-wizard">
@@ -26,16 +27,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-button {
         text-transform: none;
-      }
-
-      paper-button[toggles] {
-        border: 1px solid forestgreen;
-        margin-bottom: 10px;
-      }
-
-      paper-button[toggles][active] {
-        background: forestgreen;
-        color: white;
       }
 
       #submit, #clear {
@@ -69,8 +60,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-icon icon="search" slot="prefix"></iron-icon>
         </paper-input>
       </div>
-      <template id="channelsList" is="dom-repeat" items="{{channels}}" as="channel" filter="isFiltered">
-        <paper-button noink toggles id="[[channel.id]]" on-active-changed="saveChannelSelection" active="[[channel.selected]]">[[channel.name]]</paper-button>
+      <template is="dom-repeat" items="[[categories]]" as="category">
+        <category-section category="[[category]]" search-term="[[_normalizedSearchTerm]]"></category-section>
       </template>
       <div id="actionButtons">
         <paper-button id="clear" on-click="clearSelection">Clear</paper-button>
@@ -85,14 +76,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       static get properties () {
         return {
-          channels: {
+          categories: {
             type: Array,
             value: []
           },
           searchTerm: {
             type: String,
-            value: "",
-            observer: '_onSearchTermChanged'
+            value: ""
+          },
+          _normalizedSearchTerm: {
+            type: String,
+            computed: '_computeNormalizedSearchTerm(searchTerm)'
           }
         }
       }
@@ -102,34 +96,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.dispatchEvent(new CustomEvent('connected', { bubbles: true, composed: true }))
       }
 
-      saveChannelSelection (event) {
-        const id = event.target.id
-        const active = event.target.active
-        const index = this.channels.findIndex(channel => channel.id === parseInt(id, 10))
-
-        this.channels[index].selected = active
-      }
-
       clearSelection () {
-        for (let i = 0; i<this.channels.length; i++) {
-          this.set(`channels.${i}.selected`, false)
-        }
+        this.categories.forEach((category, categoryIndex) => {
+          for (let channelIndex = 0; channelIndex < category.Channels.length; channelIndex++) {
+            this.set(`categories.${categoryIndex}.Channels.${channelIndex}.selected`, false)
+          }
+        })
       }
 
       submitSelection () {
-        this.dispatchEvent(new CustomEvent('submitted', { detail: this.channels, bubbles: true, composed: true }))
+        const channels = this.categories.reduce((channels, category) => channels.concat(category.Channels), [])
+        this.dispatchEvent(new CustomEvent('submitted', { detail: channels, bubbles: true, composed: true }))
       }
 
-      isFiltered (channel) {
-        if(this.searchTerm.length > 0) {
-          return channel.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-        } else {
-          return true;
-        }
-      }
-
-      _onSearchTermChanged (newSearchTerm) {
-        this.$.channelsList.render()
+      _computeNormalizedSearchTerm (searchTerm) {
+        return searchTerm.toLowerCase()
       }
     }
 
