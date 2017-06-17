@@ -1,15 +1,26 @@
 'use strict';
 const SeederUtil = require('./util/seeder-util')
 
+const {
+  AE, ABC, AMC, AnimalPlanet, Audience, AXSTV, BabyFirst, BBCAmerica, BBCWorldNews, BET, BloombergTV, Bravo, BigTenNetwork, CSPAN,
+  CSPAN2, CartoonNetwork, Centric, CMT, CNBC, CNBCWorld, CNN, ComedyCentral, ComedyTV, CookingChannel, DestinationAmerica, DiscoveryChannel, DiscoveryFamily, DiscoveryLife,
+  Disney, DisneyJunior, DisneyXD, DIY, E, ESPN, ESPN2, ESPNews, ESPNU, FM, FoodNetwork, FOX, FOXBusiness, FOXNews, FOXSportsRegional,
+  FOXSports2, Freeform, Fuse, Fusion, FX, FXM, FXX, FYI, Galavision, GolfChannel, GSN, HallmarkChannel, HGTV, HistoryChannel, HLN,
+  IFC, InvestigationDiscovery, JusticeChannel, Lifetime, LMN, Logo, MLBNetwork, MSNBC, MTV, MTVClassic, MTV2, NatGeoWild, NationalGeographic, NBATV, NBC, NBCSportsNetwork,
+  NBCUniverso, NHLNetwork, NickJr, Nickelodeon, Nicktoons, OWN, Oxygen, Revolt, RFDTV, Sci, SECNetwork, Spike, Sprout,
+  SundanceTV, Syfy, TBS, TCM, TeenNick, Telemundo, TennisChannel, TLC, TNT, TravelChannel, truTV,
+  TVLand, TVG, UniMas, Univision, USA, Velocity, VH1, Viceland, WE, TheWeatherChannel, WeatherNation
+} = require('./util/channels')
+
 const channels = [
-  'A&E', 'ABC', 'AMC', 'Animal Planet', 'Audience', 'AXS TV', 'BabyFirst', 'BBC America', 'BBC World News', 'BET', 'Bloomberg TV', 'Bravo', 'Big Ten Network', 'C-SPAN',
-  'C-SPAN2', 'Cartoon Network', 'Centric', 'CMT', 'CNBC', 'CNBC World', 'CNN', 'Comedy Central', 'Comedy.TV', 'Cooking Channel', 'Destination America', 'Discovery Channel', 'Discovery Family', 'Discovery Life',
-  'Disney', 'Disney Junior', 'Disney XD', 'DIY', 'E!', 'ESPN', 'ESPN2', 'ESPNews', 'ESPNU', 'FM', 'Food Network', 'FOX', 'FOX Business', 'FOX News', 'FOX Sports (Regional)',
-  'FOX Sports 2', 'Freeform', 'Fuse', 'Fusion', 'FX', 'FXM', 'FXX', 'FYI', 'Galavisión', 'Golf Channel', 'GSN', 'Hallmark Channel', 'HGTV', 'History Channel', 'HLN',
-  'IFC', 'Investigation Discovery', 'Justice Channel', 'Lifetime', 'LMN', 'Logo', 'MLB Network', 'MSNBC', 'MTV', 'MTV Classic', 'MTV2', 'Nat Geo Wild', 'National Geographic', 'NBA TV', 'NBC', 'NBC Sports Network',
-  'NBC Universo', 'NHL Network', 'Nick Jr.', 'Nickelodeon', 'Nicktoons', 'OWN', 'Oxygen', 'Revolt', 'RFD TV', 'Sci', 'SEC Network', 'Spike', 'Sprout',
-  'Sundance TV', 'Syfy', 'TBS', 'TCM', 'TeenNick', 'Telemundo', 'Tennis Channel', 'TLC', 'TNT', 'Travel Channel', 'truTV',
-  'TV Land', 'TVG', 'UniMás', 'Univision', 'USA', 'Velocity', 'VH1', 'Viceland', 'WE', 'The Weather Channel', 'WeatherNation'
+  AE, ABC, AMC, AnimalPlanet, Audience, AXSTV, BabyFirst, BBCAmerica, BBCWorldNews, BET, BloombergTV, Bravo, BigTenNetwork, CSPAN,
+  CSPAN2, CartoonNetwork, Centric, CMT, CNBC, CNBCWorld, CNN, ComedyCentral, ComedyTV, CookingChannel, DestinationAmerica, DiscoveryChannel, DiscoveryFamily, DiscoveryLife,
+  Disney, DisneyJunior, DisneyXD, DIY, E, ESPN, ESPN2, ESPNews, ESPNU, FM, FoodNetwork, FOX, FOXBusiness, FOXNews, FOXSportsRegional,
+  FOXSports2, Freeform, Fuse, Fusion, FX, FXM, FXX, FYI, Galavision, GolfChannel, GSN, HallmarkChannel, HGTV, HistoryChannel, HLN,
+  IFC, InvestigationDiscovery, JusticeChannel, Lifetime, LMN, Logo, MLBNetwork, MSNBC, MTV, MTVClassic, MTV2, NatGeoWild, NationalGeographic, NBATV, NBC, NBCSportsNetwork,
+  NBCUniverso, NHLNetwork, NickJr, Nickelodeon, Nicktoons, OWN, Oxygen, Revolt, RFDTV, Sci, SECNetwork, Spike, Sprout,
+  SundanceTV, Syfy, TBS, TCM, TeenNick, Telemundo, TennisChannel, TLC, TNT, TravelChannel, truTV,
+  TVLand, TVG, UniMas, Univision, USA, Velocity, VH1, Viceland, WE, TheWeatherChannel, WeatherNation
 ]
 
 module.exports = {

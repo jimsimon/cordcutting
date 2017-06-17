@@ -1,12 +1,20 @@
 'use strict';
 const SeederUtil = require('./util/seeder-util')
 
+const {
+  ESPN, AMC, CNN, HGTV, ComedyCentral, CartoonNetwork, HistoryChannel,
+  Disney, ESPN2, ESPN3, TNT, FoodNetwork, TBS, BBCAmerica,
+  Freeform, IFC, TribecaShortlist, AE, ElRey, Viceland,
+  Lifetime, TravelChannel, AXSTV, Newsy, Cheddar, BloombergTV, LocalNow, Flama,
+  Galavision
+} = require('./util/channels')
+
 const channels = [
-  'ESPN', 'AMC', 'CNN', 'HGTV', 'Comedy Central', 'Cartoon Network', 'History Channel',
-  'Disney', 'ESPN2', 'ESPN3', 'TNT', 'Food Network', 'TBS', 'BBC America',
-  'Freeform', 'IFC', 'Tribeca Shortlist', 'A&E', 'El Rey', 'Viceland',
-  'Lifetime', 'Travel Channel', 'AXS TV', 'Newsy', 'Cheddar', 'Bloomberg TV', 'Local Now', 'Flama',
-  'Galavisión'
+  ESPN, AMC, CNN, HGTV, ComedyCentral, CartoonNetwork, HistoryChannel,
+  Disney, ESPN2, ESPN3, TNT, FoodNetwork, TBS, BBCAmerica,
+  Freeform, IFC, TribecaShortlist, AE, ElRey, Viceland,
+  Lifetime, TravelChannel, AXSTV, Newsy, Cheddar, BloombergTV, LocalNow, Flama,
+  Galavision
 ]
 
 module.exports = {

@@ -1,26 +1,48 @@
 'use strict';
 const SeederUtil = require('./util/seeder-util')
 
+const {
+  FOX, NBC, CBS, ABC, AMC,
+  AHC, AnimalPlanet, BBCAmerica, BBCWorldNews, Boomerang,
+  Bravo, BigTenNetwork, CartoonNetwork, Chiller, CNBC,
+  CNBCWorld, CNN, CookingChannel, DestinationAmerica, DiscoveryChannel,
+  DiscoveryFamily, DiscoveryLife, Disney, DisneyJunior, DisneyXD,
+  DIY, E, EpixHits, ESPN, ESPNDeportes,
+  ESPN2, ESPNews, ESPNU, esportsTV, Esquire,
+  FoodNetwork, FOXBusiness, FOXCollegeSportsAtlantic, FOXCollegeSportsCentral, FOXCollegeSportsPacific,
+  FOXDeportes, FOXNews, FOXSportsRegional, Freeform, FOXSports1,
+  FOXSports2, Fusion, FX, FXM, FXX,
+  GINXEsportsTV, GolfChannel, HGTV, HiYahTV,
+  HLN, IFC, Impact, InvestigationDiscovery, Machinima,
+  MGMHD, MLBNetwork, MSNBC, NatGeoWild, NationalGeographic,
+  NBATV, NBCSportsNetwork, NFLNetwork, ElevenSports, OutsideTelevision,
+  OWN, Oxygen, Polaris, Pop, Sci,
+  SECNetwork, SonyMovieChannel, Sprout, SundanceTV,
+  Syfy, TBS, Telemundo, TLC, TNT,
+  TravelChannel, truTV, TCM, UniversalHD, USA,
+  Velocity, WE
+} = require('./util/channels')
+
 const channels = [
-  'FOX', 'NBC', 'CBS', 'ABC', 'AMC',
-  'AHC', 'Animal Planet', 'BBC America', 'BBC World News', 'Boomerang',
-  'Bravo', 'Big Ten Network', 'Cartoon Network', 'Chiller', 'CNBC',
-  'CNBC World', 'CNN', 'Cooking Channel', 'Destination America', 'Discovery Channel',
-  'Discovery Family', 'Discovery Life', 'Disney', 'Disney Junior', 'Disney XD',
-  'DIY', 'E!', 'Epix Hits', 'ESPN', 'ESPN Deportes',
-  'ESPN2', 'ESPNews', 'ESPNU', 'esportsTV', 'Esquire',
-  'Food Network', 'FOX Business', 'FOX College Sports Atlantic', 'FOX College Sports Central', 'FOX College Sports Pacific',
-  'FOX Deportes', 'FOX News', 'FOX Sports (Regional)', 'Freeform', 'FOX Sports 1',
-  'FOX Sports 2', 'Fusion', 'FX', 'FXM', 'FXX',
-  'GINX Esports TV', 'Golf Channel', 'HGTV', 'Hi-Yah TV',
-  'HLN', 'IFC', 'Impact', 'Investigation Discovery', 'Machinima',
-  'MGM HD', 'MLB Network', 'MSNBC', 'Nat Geo Wild', 'National Geographic',
-  'NBA TV', 'NBC Sports Network', 'NFL Network', 'Eleven Sports', 'Outside Television',
-  'OWN', 'Oxygen', 'Polaris', 'Pop', 'Sci',
-  'SEC Network', 'Sony Movie Channel', 'Sprout', 'Sundance TV',
-  'Syfy', 'TBS', 'Telemundo', 'TLC', 'TNT',
-  'Travel Channel', 'truTV', 'TCM', 'Universal HD', 'USA',
-  'Velocity', 'WE'
+  FOX, NBC, CBS, ABC, AMC,
+  AHC, AnimalPlanet, BBCAmerica, BBCWorldNews, Boomerang,
+  Bravo, BigTenNetwork, CartoonNetwork, Chiller, CNBC,
+  CNBCWorld, CNN, CookingChannel, DestinationAmerica, DiscoveryChannel,
+  DiscoveryFamily, DiscoveryLife, Disney, DisneyJunior, DisneyXD,
+  DIY, E, EpixHits, ESPN, ESPNDeportes,
+  ESPN2, ESPNews, ESPNU, esportsTV, Esquire,
+  FoodNetwork, FOXBusiness, FOXCollegeSportsAtlantic, FOXCollegeSportsCentral, FOXCollegeSportsPacific,
+  FOXDeportes, FOXNews, FOXSportsRegional, Freeform, FOXSports1,
+  FOXSports2, Fusion, FX, FXM, FXX,
+  GINXEsportsTV, GolfChannel, HGTV, HiYahTV,
+  HLN, IFC, Impact, InvestigationDiscovery, Machinima,
+  MGMHD, MLBNetwork, MSNBC, NatGeoWild, NationalGeographic,
+  NBATV, NBCSportsNetwork, NFLNetwork, ElevenSports, OutsideTelevision,
+  OWN, Oxygen, Polaris, Pop, Sci,
+  SECNetwork, SonyMovieChannel, Sprout, SundanceTV,
+  Syfy, TBS, Telemundo, TLC, TNT,
+  TravelChannel, truTV, TCM, UniversalHD, USA,
+  Velocity, WE
 ]
 
 module.exports = {

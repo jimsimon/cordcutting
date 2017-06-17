@@ -1,15 +1,26 @@
 'use strict';
 const SeederUtil = require('./util/seeder-util')
 
+const {
+  ABC, CBS, FOX, NBC, CW, Telemundo,
+  ESPN, CSNRegional, FOXSportsRegional, FOXSports1, AMC, USA,
+  FX, Freeform, Disney, E, ESPN2, FOXSports2,
+  BigTenNetwork, SECNetwork, ESPNU, ESPNews, Bravo, Oxygen,
+  IFC, FXX, NBCUniverso, Syfy, DisneyJunior, DisneyXD,
+  Sprout, CBSSportsNetwork, NBCSportsNetwork, GolfChannel, MSNBC, FOXNews,
+  CNBC, FOXBusiness, SundanceTV, NationalGeographic, NatGeoWild, WE,
+  BBCAmerica, FXM, UniversalHD, Chiller, YouTubeRedOriginals
+} = require('./util/channels')
+
 const channels = [
-  'ABC', 'CBS', 'FOX', 'NBC', 'CW', 'Telemundo',
-  'ESPN', 'CSN (Regional)', 'FOX Sports (Regional)', 'FOX Sports 1', 'AMC', 'USA',
-  'FX', 'Freeform', 'Disney', 'E!', 'ESPN2', 'FOX Sports 2',
-  'Big Ten Network', 'SEC Network', 'ESPNU', 'ESPNews', 'Bravo', 'Oxygen',
-  'IFC', 'FXX', 'NBC Universo', 'Syfy', 'Disney Junior', 'Disney XD',
-  'Sprout', 'CBS Sports Network', 'NBC Sports Network', 'Golf Channel', 'MSNBC', 'FOX News',
-  'CNBC', 'FOX Business', 'Sundance TV', 'National Geographic', 'Nat Geo Wild', 'WE',
-  'BBC America', 'FXM', 'Universal HD', 'Chiller', 'YouTube Red Originals'
+  ABC, CBS, FOX, NBC, CW, Telemundo,
+  ESPN, CSNRegional, FOXSportsRegional, FOXSports1, AMC, USA,
+  FX, Freeform, Disney, E, ESPN2, FOXSports2,
+  BigTenNetwork, SECNetwork, ESPNU, ESPNews, Bravo, Oxygen,
+  IFC, FXX, NBCUniverso, Syfy, DisneyJunior, DisneyXD,
+  Sprout, CBSSportsNetwork, NBCSportsNetwork, GolfChannel, MSNBC, FOXNews,
+  CNBC, FOXBusiness, SundanceTV, NationalGeographic, NatGeoWild, WE,
+  BBCAmerica, FXM, UniversalHD, Chiller, YouTubeRedOriginals
 ]
 
 module.exports = {

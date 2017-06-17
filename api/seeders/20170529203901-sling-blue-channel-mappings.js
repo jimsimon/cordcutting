@@ -1,14 +1,24 @@
 'use strict';
 const SeederUtil = require('./util/seeder-util')
 
+const {
+  AMC, CNN, HGTV, ComedyCentral, CartoonNetwork,
+  HistoryChannel, TNT, FoodNetwork, TBS, BBCAmerica, IFC, TribecaShortlist,
+  AE, ElRey, Viceland, Lifetime, TravelChannel, AXSTV, Newsy, Cheddar,
+  BloombergTV, LocalNow, Flama, Galavision, FOX, NBC, FOXSportsRegional,
+  CSNRegional, NFLNetwork, FX, USA, Bravo, FOXSports1, FOXSports2,
+  NBCSportsNetwork, FXX, Syfy, NickJr, truTV, BET, NationalGeographic,
+  NatGeoWild, Univision, UniMas
+} = require('./util/channels')
+
 const channels = [
-  'AMC', 'CNN', 'HGTV', 'Comedy Central', 'Cartoon Network',
-  'History Channel', 'TNT', 'Food Network', 'TBS', 'BBC America', 'IFC', 'Tribeca Shortlist',
-  'A&E', 'El Rey', 'Viceland', 'Lifetime', 'Travel Channel', 'AXS TV', 'Newsy', 'Cheddar',
-  'Bloomberg TV', 'Local Now', 'Flama', 'Galavisión', 'FOX', 'NBC', 'FOX Sports (Regional)',
-  'CSN (Regional)', 'NFL Network', 'FX', 'USA', 'Bravo', 'FOX Sports 1', 'FOX Sports 2',
-  'NBC Sports Network', 'FXX', 'Syfy', 'Nick Jr.', 'truTV', 'BET', 'National Geographic',
-  'Nat Geo Wild', 'Univision', 'UniMás'
+  AMC, CNN, HGTV, ComedyCentral, CartoonNetwork,
+  HistoryChannel, TNT, FoodNetwork, TBS, BBCAmerica, IFC, TribecaShortlist,
+  AE, ElRey, Viceland, Lifetime, TravelChannel, AXSTV, Newsy, Cheddar,
+  BloombergTV, LocalNow, Flama, Galavision, FOX, NBC, FOXSportsRegional,
+  CSNRegional, NFLNetwork, FX, USA, Bravo, FOXSports1, FOXSports2,
+  NBCSportsNetwork, FXX, Syfy, NickJr, truTV, BET, NationalGeographic,
+  NatGeoWild, Univision, UniMas
 ]
 
 module.exports = {

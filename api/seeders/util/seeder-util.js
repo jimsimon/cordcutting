@@ -1,7 +1,16 @@
 const { Bundle, Channel, Provider } = require('../../models/index')
 
 class SeederUtil {
-  async addChannelsToBundle(providerName, bundleName, channelNames) {
+  async addChannelsToBundle(providerName, bundleName, channelList) {
+    if (!channelList) {
+      throw new Error('Channel list must be provided')
+    }
+
+    const channelNames = channelList.map(c => c.name)
+    await this.addChannelsToBundleByName(providerName, bundleName, channelNames)
+  }
+
+  async addChannelsToBundleByName(providerName, bundleName, channelNames) {
     if (!providerName) {
       throw new Error('Provider name must be specified')
     }

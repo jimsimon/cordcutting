@@ -1,26 +1,48 @@
 'use strict';
 const SeederUtil = require('./util/seeder-util')
 
+const {
+  FOX, NBC, CBS, ABC, AMC,
+  AnimalPlanet, BBCAmerica,
+  Bravo, BigTenNetwork, CartoonNetwork, CNBC,
+  CNN, DestinationAmerica, DiscoveryChannel,
+  DiscoveryFamily, Disney, DisneyJunior, DisneyXD,
+  DIY, E, ESPN,
+  ESPN2, ESPNews, ESPNU,
+  FoodNetwork, FOXBusiness,
+  FOXNews, FOXSportsRegional, Freeform, FOXSports1,
+  FOXSports2, FX, FXX,
+  GolfChannel, HGTV,
+  HLN, IFC, InvestigationDiscovery,
+  MLBNetwork, MSNBC, NationalGeographic,
+  NBATV, NBCSportsNetwork, NFLNetwork,
+  OWN, Oxygen, Pop, Sci,
+  SECNetwork, SundanceTV,
+  Syfy, TBS, Telemundo, TLC, TNT,
+  TravelChannel, truTV, TCM, USA,
+  WE
+} = require('./util/channels')
+
 const channels = [
-  'FOX', 'NBC', 'CBS', 'ABC', 'AMC',
-  'Animal Planet', 'BBC America',
-  'Bravo', 'Big Ten Network', 'Cartoon Network', 'CNBC',
-  'CNN', 'Destination America', 'Discovery Channel',
-  'Discovery Family', 'Disney', 'Disney Junior', 'Disney XD',
-  'DIY', 'E!', 'ESPN',
-  'ESPN2', 'ESPNews', 'ESPNU',
-  'Food Network', 'FOX Business',
-  'FOX News', 'FOX Sports (Regional)', 'Freeform', 'FOX Sports 1',
-  'FOX Sports 2', 'FX', 'FXX',
-  'Golf Channel', 'HGTV',
-  'HLN', 'IFC', 'Investigation Discovery',
-  'MLB Network', 'MSNBC', 'National Geographic',
-  'NBA TV', 'NBC Sports Network', 'NFL Network',
-  'OWN', 'Oxygen', 'Pop', 'Sci',
-  'SEC Network', 'Sundance TV',
-  'Syfy', 'TBS', 'Telemundo', 'TLC', 'TNT',
-  'Travel Channel', 'truTV', 'TCM', 'USA',
-  'WE'
+  FOX, NBC, CBS, ABC, AMC,
+  AnimalPlanet, BBCAmerica,
+  Bravo, BigTenNetwork, CartoonNetwork, CNBC,
+  CNN, DestinationAmerica, DiscoveryChannel,
+  DiscoveryFamily, Disney, DisneyJunior, DisneyXD,
+  DIY, E, ESPN,
+  ESPN2, ESPNews, ESPNU,
+  FoodNetwork, FOXBusiness,
+  FOXNews, FOXSportsRegional, Freeform, FOXSports1,
+  FOXSports2, FX, FXX,
+  GolfChannel, HGTV,
+  HLN, IFC, InvestigationDiscovery,
+  MLBNetwork, MSNBC, NationalGeographic,
+  NBATV, NBCSportsNetwork, NFLNetwork,
+  OWN, Oxygen, Pop, Sci,
+  SECNetwork, SundanceTV,
+  Syfy, TBS, Telemundo, TLC, TNT,
+  TravelChannel, truTV, TCM, USA,
+  WE
 ]
 
 module.exports = {

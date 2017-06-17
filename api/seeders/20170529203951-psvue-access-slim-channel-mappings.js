@@ -1,25 +1,46 @@
 'use strict';
 const SeederUtil = require('./util/seeder-util')
 
+const {
+  FOX, NBC, CBS, ABC, AMC,
+  AnimalPlanet, BBCAmerica,
+  Bravo, CartoonNetwork, CNBC,
+  CNN, DestinationAmerica, DiscoveryChannel,
+  DiscoveryFamily, Disney, DisneyJunior, DisneyXD,
+  DIY, E, ESPN,
+  ESPN2,
+  FoodNetwork, FOXBusiness,
+  FOXNews, Freeform, FOXSports1,
+  FOXSports2, FX, FXX,
+  HGTV,
+  HLN, InvestigationDiscovery,
+  MSNBC, NationalGeographic,
+  NBCSportsNetwork,
+  OWN, Oxygen, Pop, Sci,
+  Syfy, TBS, Telemundo, TLC, TNT,
+  TravelChannel, truTV, USA,
+  WE
+} = require('./util/channels')
+
 const channels = [
-  'FOX', 'NBC', 'CBS', 'ABC', 'AMC',
-  'Animal Planet', 'BBC America',
-  'Bravo', 'Cartoon Network', 'CNBC',
-  'CNN', 'Destination America', 'Discovery Channel',
-  'Discovery Family', 'Disney', 'Disney Junior', 'Disney XD',
-  'DIY', 'E!', 'ESPN',
-  'ESPN2',
-  'Food Network', 'FOX Business',
-  'FOX News', 'Freeform', 'FOX Sports 1',
-  'FOX Sports 2', 'FX', 'FXX',
-  'HGTV',
-  'HLN', 'Investigation Discovery',
-  'MSNBC', 'National Geographic',
-  'NBC Sports Network',
-  'OWN', 'Oxygen', 'Pop', 'Sci',
-  'Syfy', 'TBS', 'Telemundo', 'TLC', 'TNT',
-  'Travel Channel', 'truTV', 'USA',
-  'WE'
+  FOX, NBC, CBS, ABC, AMC,
+  AnimalPlanet, BBCAmerica,
+  Bravo, CartoonNetwork, CNBC,
+  CNN, DestinationAmerica, DiscoveryChannel,
+  DiscoveryFamily, Disney, DisneyJunior, DisneyXD,
+  DIY, E, ESPN,
+  ESPN2,
+  FoodNetwork, FOXBusiness,
+  FOXNews, Freeform, FOXSports1,
+  FOXSports2, FX, FXX,
+  HGTV,
+  HLN, InvestigationDiscovery,
+  MSNBC, NationalGeographic,
+  NBCSportsNetwork,
+  OWN, Oxygen, Pop, Sci,
+  Syfy, TBS, Telemundo, TLC, TNT,
+  TravelChannel, truTV, USA,
+  WE
 ]
 
 module.exports = {
