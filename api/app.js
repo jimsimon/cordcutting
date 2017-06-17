@@ -1,5 +1,4 @@
 const express = require('express')
-const cors = require('cors')
 const bodyParser = require('body-parser')
 const Umzug = require('umzug')
 const { sequelize } = require('./util/sequelize')
@@ -20,12 +19,9 @@ app.use('*', function (req, res, next) {
     } else {
       next()
     }
-  });
+  })
 })
 
-app.use(cors({
-  origin: 'http://ui.cordcutting.docker'
-}))
 app.use(bodyParser.json())
 
 app.post('/wizardResults', async function (req, res) {
