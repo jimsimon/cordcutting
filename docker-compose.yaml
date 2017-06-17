@@ -3,18 +3,15 @@ services:
   ui:
     build:
       context: ui
-    container_name: ui
     volumes:
       - ./ui:/usr/src/app
   api:
-    image: node:latest
-    container_name: api
+    build:
+      context: api
     volumes:
       - ./api:/usr/src/app
-    expose:
-      - "3000"
-    working_dir: /usr/src/app
-    command: "npm start"
+    environment:
+      - NODE_ENV=development
     depends_on:
       - db
   db:
