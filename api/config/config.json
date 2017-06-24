@@ -7,10 +7,11 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": null,
+    "username": {"use_env_variable": "DB_USERNAME"},
+    "password": {"use_env_variable": "DB_PASSWORD"},
+    "port": {"use_env_variable": "DB_PORT"},
+    "host": {"use_env_variable": "DB_HOST"},
     "database": "cordcutting",
-    "host": "db",
     "dialect": "postgres"
   }
 }

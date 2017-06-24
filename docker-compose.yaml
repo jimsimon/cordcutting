@@ -22,7 +22,7 @@ services:
       - POSTGRES_DB=cordcutting
   proxy:
     build:
-      context: docker/nginx
+      context: proxy
     ports:
       - "80:80"
       - "443:443"
