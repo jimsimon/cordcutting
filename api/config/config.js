@@ -1,4 +1,4 @@
-{
+module.exports = {
   "development": {
     "username": "postgres",
     "password": null,
@@ -7,10 +7,10 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": {"use_env_variable": "DB_USERNAME"},
-    "password": {"use_env_variable": "DB_PASSWORD"},
-    "port": {"use_env_variable": "DB_PORT"},
-    "host": {"use_env_variable": "DB_HOST"},
+    "username": process.env.DB_USER,
+    "password": process.env.DB_PASSWORD,
+    "port": process.env.DB_PORT,
+    "host": process.env.DB_HOST,
     "database": "cordcutting",
     "dialect": "postgres"
   }
