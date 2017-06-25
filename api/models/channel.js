@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Channel = sequelize.define('Channel', {
+  var Channel = sequelize.define('channel', {
     name: DataTypes.STRING,
     displayName: DataTypes.STRING,
     abbreviation: DataTypes.STRING
@@ -8,9 +8,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function({Bundle, Category, WizardRequest}) {
         // associations can be defined here
-        Channel.belongsTo(Category, {foreignKey: 'categoryId'})
-        Channel.belongsToMany(Bundle, {through: 'BundlesChannels',  foreignKey: 'channelId', otherKey: 'bundleId'})
-        Channel.belongsToMany(WizardRequest, {through: 'WizardRequestsChannels', foreignKey: 'channelId', otherKey: 'wizardRequestId'})
+        Channel.belongsTo(Category)
+        Channel.belongsToMany(Bundle, {through: 'bundlesChannels',  foreignKey: 'channelId', otherKey: 'bundleId'})
+        Channel.belongsToMany(WizardRequest, {through: 'wizardRequestsChannels', foreignKey: 'channelId', otherKey: 'wizardRequestId'})
       }
     }
   });

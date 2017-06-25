@@ -56,7 +56,7 @@ app.get('/categories', async function (req, res) {
 async function buildWizardResultForChannels(userSelectedChannelIds) {
   const userSelectedChannels = await Channel.findAll({where: {id: {$in: userSelectedChannelIds}}})
   const wizardRequest = await WizardRequest.create({
-    Channels: userSelectedChannels
+    channels: userSelectedChannels
   })
 
   const userSelectedChannelMap = userSelectedChannels.reduce(function (map, channel) {

@@ -4,7 +4,7 @@ const { Provider, Bundle } = require('../models/index')
 const providers = [
   {
     name: 'Sling TV',
-    Bundles: [
+    bundles: [
       {
         name: 'Blue',
         price: 2500
@@ -21,7 +21,7 @@ const providers = [
   },
   {
     name: 'PlayStation Vue',
-    Bundles: [
+    bundles: [
       {
         name: 'Access Slim',
         price: 2999
@@ -42,7 +42,7 @@ const providers = [
   },
   {
     name: 'Hulu Live',
-    Bundles: [
+    bundles: [
       {
         name: 'Standard',
         price: 3999
@@ -51,7 +51,7 @@ const providers = [
   },
   {
     name: 'fuboTV',
-    Bundles: [
+    bundles: [
       {
         name: 'fubo Premier',
         price: 3499
@@ -68,7 +68,7 @@ const providers = [
   },
   {
     name: 'DirecTV Now',
-    Bundles: [
+    bundles: [
       {
         name: 'Live A Little',
         price: 3500
@@ -89,7 +89,7 @@ const providers = [
   },
   {
     name: 'YouTube TV',
-    Bundles: [
+    bundles: [
       {
         name: 'Standard',
         price: 3500

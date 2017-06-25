@@ -23,11 +23,11 @@ const {
 const categories = [
   {
     name: 'Local',
-    Channels: [ ABC, CBS, FOX, NBC, CW, LocalNow ]
+    channels: [ ABC, CBS, FOX, NBC, CW, LocalNow ]
   },
   {
     name: 'Entertainment',
-    Channels: [
+    channels: [
       AMC, ComedyCentral, HistoryChannel, TNT, TBS, BBCAmerica, TribecaShortlist, AE, E, FX, USA, Syfy, truTV,
       NationalGeographic, NatGeoWild, Freeform, ElRey, Viceland, AXSTV, IFC, Galavision, Flama, Bravo, FXX, BET,
       Univision, UnivisionDeportes, UniMas, Chiller, FXM, FYI, HLN, LMN, Oxygen, Pop, TCM, Telemundo, NBCUniverso,
@@ -40,18 +40,18 @@ const categories = [
   },
   {
     name: 'Financial',
-    Channels: [ CNBC, BloombergTV, CNBCWorld, FOXBusiness, Cheddar ]
+    channels: [ CNBC, BloombergTV, CNBCWorld, FOXBusiness, Cheddar ]
   },
   {
     name: 'Premium',
-    Channels: [
+    channels: [
       HBO, Showtime, StarzEast, StarzEncoreAction, StarzEncoreBlack, StarzEncoreClassic, StarzEncoreFamily,
       StarzEncoreSuspense, StarzEncoreWest, StarzEncoreWesterns
     ]
   },
   {
     name: 'Sports',
-    Channels: [
+    channels: [
       FOXSports1, FOXCollegeSportsAtlantic, FOXCollegeSportsCentral, FOXCollegeSportsPacific, FOXSports2,
       FOXSportsRegional, CSNRegional, CBSSportsNetwork, NBCSportsNetwork, ESPN, ESPN2, ESPN3, ESPNDeportes, ESPNews,
       ESPNU, SECNetwork, NBATV, NFLNetwork, NHLNetwork, MLBNetwork, BigTenNetwork, TennisChannel, GolfChannel,
@@ -60,18 +60,18 @@ const categories = [
   },
   {
     name: 'Lifestyle',
-    Channels: [ HGTV, FoodNetwork, Lifetime, TravelChannel, CookingChannel, OutsideTelevision ]
+    channels: [ HGTV, FoodNetwork, Lifetime, TravelChannel, CookingChannel, OutsideTelevision ]
   },
   {
     name: 'Kids',
-    Channels: [
+    channels: [
       CartoonNetwork, Nickelodeon, NickJr, Nicktoons, TeenNick, Boomerang, Sprout, Disney, DisneyJunior, DisneyXD,
       BabyFirst
     ]
   },
   {
     name: 'News and Weather',
-    Channels: [
+    channels: [
       CNN, CNNInternational, Newsy, BBCWorldNews, MSNBC, FOXNews, TheWeatherChannel, WeatherNation, CSPAN, CSPAN2
     ]
   }

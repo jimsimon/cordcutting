@@ -1,11 +1,10 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var WizardRequest = sequelize.define('WizardRequest', {
+  const WizardRequest = sequelize.define('wizardRequest', {
 
   }, {
     classMethods: {
       associate: function({Channel}) {
-        // associations can be defined here
         WizardRequest.belongsToMany(Channel, {through: 'WizardRequestsChannels', foreignKey: 'wizardRequestId', otherKey: 'channelId'})
       }
     }

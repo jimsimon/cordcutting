@@ -2,11 +2,11 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('WizardRequestsChannels', {
+    return queryInterface.createTable('wizardRequestsChannels', {
       wizardRequestId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'WizardRequests',
+          model: 'wizardRequests',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -15,7 +15,7 @@ module.exports = {
       channelId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Channels',
+          model: 'channels',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -34,18 +34,18 @@ module.exports = {
     }).then(function () {
       return Promise.all([
         queryInterface.addIndex(
-          'WizardRequestsChannels',
+          'wizardRequestsChannels',
           ['wizardRequestId', 'channelId'],
           {
-            indexName: 'WizardRequestsChannelsCompositeIndex',
+            indexName: 'wizardRequestsChannelsCompositeIndex',
             indicesType: 'UNIQUE'
           }
         ),
         queryInterface.addIndex(
-          'WizardRequestsChannels',
+          'wizardRequestsChannels',
           ['channelId'],
           {
-            indexName: 'WizardRequestsChannelsChannelIndex'
+            indexName: 'wizardRequestsChannelsChannelIndex'
           }
         )
       ])

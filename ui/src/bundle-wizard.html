@@ -98,14 +98,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       clearSelection () {
         this.categories.forEach((category, categoryIndex) => {
-          for (let channelIndex = 0; channelIndex < category.Channels.length; channelIndex++) {
-            this.set(`categories.${categoryIndex}.Channels.${channelIndex}.selected`, false)
+          for (let channelIndex = 0; channelIndex < category.channels.length; channelIndex++) {
+            this.set(`categories.${categoryIndex}.channels.${channelIndex}.selected`, false)
           }
         })
       }
 
       submitSelection () {
-        const channels = this.categories.reduce((channels, category) => channels.concat(category.Channels), [])
+        const channels = this.categories.reduce((channels, category) => channels.concat(category.channels), [])
         this.dispatchEvent(new CustomEvent('submitted', { detail: channels, bubbles: true, composed: true }))
       }
 

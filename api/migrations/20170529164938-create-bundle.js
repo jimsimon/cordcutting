@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Bundles', {
+    return queryInterface.createTable('bundles', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,7 +19,7 @@ module.exports = {
       providerId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Providers',
+          model: 'providers',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -38,6 +38,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Bundles');
+    return queryInterface.dropTable('bundles');
   }
 };

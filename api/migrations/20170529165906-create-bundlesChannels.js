@@ -2,11 +2,11 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('BundlesChannels', {
+    return queryInterface.createTable('bundlesChannels', {
       bundleId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Bundles',
+          model: 'bundles',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -15,7 +15,7 @@ module.exports = {
       channelId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Channels',
+          model: 'channels',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -34,24 +34,24 @@ module.exports = {
     }).then(function () {
       return Promise.all([
         queryInterface.addIndex(
-          'BundlesChannels',
+          'bundlesChannels',
           ['bundleId', 'channelId'],
           {
-            indexName: 'BundleChannelsCompositeIndex',
+            indexName: 'bundlesChannelsCompositeIndex',
             indicesType: 'UNIQUE'
           }
         ),
         queryInterface.addIndex(
-          'BundlesChannels',
+          'bundlesChannels',
           ['channelId'],
           {
-            indexName: 'BundleChannelsChannelIndex'
+            indexName: 'bundlesChannelsChannelIndex'
           }
         )
       ])
     })
   },
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('BundlesChannels');
+    return queryInterface.dropTable('bundlesChannels');
   }
 };
