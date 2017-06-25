@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 module.exports = {
-  up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('categories', {
+  up: async function(queryInterface, Sequelize) {
+    await queryInterface.createTable('categories', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -22,9 +22,12 @@ module.exports = {
         defaultValue: new Date(),
         type: Sequelize.DATE
       }
-    });
+    })
+
+    const categories = ['Local', 'Entertainment', 'Financial', 'Premium', 'Sports', 'Lifestyle', 'Kids', 'News and Weather']
+    await queryInterface.bulkInsert('categories', categories.map(c => ({name: c})))
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('categories');
+    return queryInterface.dropTable('categories')
   }
-};
+}

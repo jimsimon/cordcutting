@@ -2,7 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Channel = sequelize.define('channel', {
     name: DataTypes.STRING,
-    displayName: DataTypes.STRING,
+    useNameForDisplay: DataTypes.BOOLEAN,
     abbreviation: DataTypes.STRING
   }, {
     classMethods: {
