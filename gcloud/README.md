@@ -12,13 +12,13 @@
 6) Build docker images
    * UI: `docker build -t gcr.io/$(PROJECT_ID)/ui:$(git rev-parse HEAD) .`
    * API: `docker build -t gcr.io/$(PROJECT_ID)/api:$(git rev-parse HEAD) .`
-   * Proxy: `docker build -t gcr.io/$(PROJECT_ID)/proxy:$(git rev-parse HEAD) .`
 7) push docker images
 8) Create cluster`gcloud container clusters create cordcut-me --machine-type=g1-small --disk-size=20 --num-nodes=2`
 9) Create deployments and services
    * Deployment: `kubectl create -f <container>-deployment.yaml`
    * Service: `kubectl create -f <container>-service.yaml`
-10) Verify via public ip found using `kubectl get service proxy`
+10) Create load balancer: `kubectl create -f ingress.yaml`
+11) Verify via public ip found using `kubectl get service proxy`
 
 ## Pushing a new version
 1) Build new image
