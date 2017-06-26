@@ -24,6 +24,10 @@ app.use('*', function (req, res, next) {
 
 app.use(bodyParser.json())
 
+app.get('/', function (req, res) {
+  res.send('API is healthy!')
+})
+
 app.post('/wizardResults', async function (req, res) {
 
   const wizardResult = await buildWizardResultForChannels(req.body);
