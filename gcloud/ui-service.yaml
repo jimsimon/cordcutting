@@ -7,7 +7,7 @@ metadata:
     tier: ui
 spec:
   ports:
-  - port: 8081
+  - port: 8080
   selector:
     app: cordcut-me
     tier: ui

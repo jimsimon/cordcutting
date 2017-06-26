@@ -17,4 +17,4 @@ spec:
         - name: GET_HOSTS_FROM
           value: dns
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
