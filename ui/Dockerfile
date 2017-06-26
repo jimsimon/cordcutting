@@ -7,8 +7,8 @@ COPY ./ ./
 RUN npm install
 RUN npm install -g bower
 RUN ./node_modules/.bin/polymer install
-RUN ./node_modules/.bin/polymer build
+RUN ./node_modules/.bin/polymer build --add-service-worker
 
-EXPOSE 8081
+EXPOSE 8080
 
-CMD ./node_modules/.bin/polymer serve --hostname 0.0.0.0
+CMD npm start

@@ -22,9 +22,6 @@
   },
   "scripts": {
     "console": "node bin/console.js",
-    "privisionDatabase": "npm run migrateDatabase; npm run seedDatabase",
-    "migrateDatabase": "docker-compose run --rm api npm run sequelize db:migrate",
-    "seedDatabase": "docker-compose run --rm api npm run sequelize db:seed:all",
     "start": "node index.js",
     "sequelize": "node node_modules/.bin/sequelize"
   }
