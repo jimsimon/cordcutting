@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const Umzug = require('umzug')
+const env = process.env.NODE_ENV
 const { sequelize } = require('./util/sequelize')
 const { Bundle, Category, Channel, WizardRequest } = require('./models/index')
 
@@ -12,14 +13,21 @@ const umzug = new Umzug({
   }
 })
 
-app.use('*', function (req, res, next) {
-  umzug.pending().then(function (migrations) {
+app.use('*', async function (req, res, next) {
+  if (env === 'production') {
+    return next()
+  }
+
+  try {
+    const migrations = await umzug.pending()
     if (migrations && migrations.length > 0) {
       res.status(500).send("You have pending database migrations, please run them before continuing.")
     } else {
       next()
     }
-  })
+  } catch (e) {
+    next(e)
+  }
 })
 
 app.use(bodyParser.json())
@@ -55,6 +63,18 @@ app.get('/wizardResults', async function (req, res) {
 app.get('/categories', async function (req, res) {
   const categories = await Category.findAll({ order: [['name', 'ASC'], [Channel, 'name', 'ASC']], include: [Channel]})
   res.json(categories)
+})
+
+app.use(function (err, req, res, next) {
+  if (res.headersSent) {
+    return next(err)
+  }
+  res.status(500)
+  res.send(`
+    <h1>Error Report</h1>
+    <p>${err.message}</p>
+    <p>${err.stack}</p>
+  `)
 })
 
 async function buildWizardResultForChannels(userSelectedChannelIds) {
