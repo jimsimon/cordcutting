@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 const Umzug = require('umzug')
 const env = process.env.NODE_ENV
 const { sequelize } = require('./util/sequelize')
@@ -12,6 +13,8 @@ const umzug = new Umzug({
     sequelize
   }
 })
+
+app.use(morgan('combined'))
 
 app.use('*', async function (req, res, next) {
   if (env === 'production') {
