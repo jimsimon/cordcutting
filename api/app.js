@@ -39,13 +39,13 @@ app.get('/', function (req, res) {
   res.send('API is healthy!')
 })
 
-app.post('/wizardResults', async function (req, res) {
+app.post('/api/wizardResults', async function (req, res) {
 
   const wizardResult = await buildWizardResultForChannels(req.body);
   res.json(wizardResult)
 })
 
-app.get('/wizardResults', async function (req, res) {
+app.get('/api/wizardResults', async function (req, res) {
   const wizardRequestId = req.query.wizardRequestId
 
   if (!wizardRequestId) {
@@ -63,7 +63,7 @@ app.get('/wizardResults', async function (req, res) {
   res.json(wizardResult)
 })
 
-app.get('/categories', async function (req, res) {
+app.get('/api/categories', async function (req, res) {
   const categories = await Category.findAll({ order: [['name', 'ASC'], [Channel, 'name', 'ASC']], include: [Channel]})
   res.json(categories)
 })
