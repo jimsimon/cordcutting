@@ -12,6 +12,7 @@
     "body-parser": "^1.17.2",
     "chokidar": "^1.7.0",
     "express": "^4.15.3",
+    "express-promise-router": "^1.1.1",
     "invalidate-module": "^1.0.0",
     "morgan": "^1.8.2",
     "pg": "^6.2.3",
