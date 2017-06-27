@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: fanout-ingress
 spec:
+  tls:
+    - secretName: sslsecret
   rules:
   - http:
       paths:
