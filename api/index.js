@@ -8,7 +8,7 @@ let server = require('./app')
 chokidar.watch('.', {
   ignoreInitial: true,
   ignored: [/(^|[\/\\])\../, '**/node_modules/**']
-}).on('change', (event, filepath) => {
+}).on('change', (filepath) => {
   console.log('Change detected -- reloading server')
   const absFilename = path.resolve(filepath);
   invalidate(absFilename);
