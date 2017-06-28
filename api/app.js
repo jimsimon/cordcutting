@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const Umzug = require('umzug')
+const forceSSL = require('express-force-ssl')
 const router = require('./router/router')
 const env = process.env.NODE_ENV
 const { sequelize } = require('./util/sequelize')
@@ -15,6 +16,10 @@ const umzug = new Umzug({
 })
 
 app.use(morgan('combined'))
+
+if (env !== 'development') {
+  app.use(forceSSL)
+}
 
 app.use('*', async function (req, res, next) {
   if (env === 'production') {
