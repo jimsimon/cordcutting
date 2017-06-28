@@ -8,6 +8,10 @@ const env = process.env.NODE_ENV
 const { sequelize } = require('./util/sequelize')
 
 const app = express()
+app.set('forceSSLOptions', {
+  trustXFPHeader: true
+})
+
 const umzug = new Umzug({
   storage: 'sequelize',
   storageOptions: {
@@ -16,10 +20,6 @@ const umzug = new Umzug({
 })
 
 app.use(morgan('combined'))
-
-if (env !== 'development') {
-  app.use(forceSSL)
-}
 
 app.use('*', async function (req, res, next) {
   if (env === 'production') {
@@ -44,7 +44,12 @@ app.get('/', function (req, res) {
   res.send('API is healthy!')
 })
 
-app.use('/api', router)
+
+if (env !== 'development') {
+  app.use('/api', forceSSL, router)
+} else {
+  app.use('/api', router)
+}
 
 app.use(function (err, req, res, next) {
   if (res.headersSent) {
