@@ -1,13 +1,13 @@
 const { Bundle, Category, Channel, WizardRequest } = require('../models/index')
 const router = require('express-promise-router')()
 
-router.post('/api/wizardResults', async function (req, res) {
+router.post('/wizardResults', async function (req, res) {
 
   const wizardResult = await buildWizardResultForChannels(req.body);
   res.json(wizardResult)
 })
 
-router.get('/api/wizardResults', async function (req, res) {
+router.get('/wizardResults', async function (req, res) {
   const wizardRequestId = req.query.wizardRequestId
 
   if (!wizardRequestId) {
@@ -25,7 +25,7 @@ router.get('/api/wizardResults', async function (req, res) {
   res.json(wizardResult)
 })
 
-router.get('/api/categories', async function (req, res) {
+router.get('/categories', async function (req, res) {
   const categories = await Category.findAll({ order: [['name', 'ASC'], [Channel, 'name', 'ASC']], include: [Channel]})
   res.json(categories)
 })
