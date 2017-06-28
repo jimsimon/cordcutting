@@ -8,7 +8,7 @@
     "polymer-cli": "^1.1.0"
   },
   "scripts": {
-    "start": "node ./node_modules/.bin/prpl-server --root ./build --config ./build/polymer.json --host 0.0.0.0",
+    "start": "node ./node_modules/.bin/prpl-server --root ./build --config ./build/polymer.json --host 0.0.0.0 --https-redirect",
     "lint": "eslint . --ext js,html --ignore-path .gitignore",
     "test": "npm run lint && ./node_modules/.bin/polymer test"
   },
