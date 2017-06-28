@@ -2,6 +2,8 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: fanout-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: cordcut-me-static-ip
 spec:
   tls:
     - secretName: sslsecret
