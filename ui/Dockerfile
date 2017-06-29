@@ -1,6 +1,5 @@
 FROM node:latest
 
-ENV NODE_ENV=production
 
 WORKDIR /usr/src/app
 
@@ -10,6 +9,8 @@ RUN npm install
 RUN npm install -g bower
 RUN ./node_modules/.bin/polymer install
 RUN ./node_modules/.bin/polymer build
+
+ENV NODE_ENV=production
 
 EXPOSE 8080
 
