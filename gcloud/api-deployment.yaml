@@ -13,10 +13,6 @@ spec:
       containers:
       - name: api
         image: gcr.io/cordcut-me/api:latest
-        livenessProbe:
-          httpGet:
-            path: /_health
-            port: 80
         env:
         - name: GET_HOSTS_FROM
           value: dns

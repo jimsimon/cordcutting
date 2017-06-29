@@ -12,8 +12,12 @@ app.set('forceSSLOptions', {
 
 app.use(morgan('combined'))
 
-app.get('/_health', function (req, res) {
-  res.send('UI is healthy!')
+app.use('/', function (req, res, next) {
+  if (req.get('User-Agent').includes('GoogleHC')) {
+    res.send('UI is healthy!')
+  } else {
+    next()
+  }
 })
 
 if (env === 'development') {

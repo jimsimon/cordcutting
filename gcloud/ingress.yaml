@@ -5,6 +5,9 @@ metadata:
   annotations:
     kubernetes.io/ingress.global-static-ip-name: cordcut-me-static-ip
 spec:
+  backend:
+    serviceName: ui
+    servicePort: 8080
   tls:
     - secretName: sslsecret
   rules:
@@ -14,7 +17,3 @@ spec:
         backend:
           serviceName: api
           servicePort: 3000
-      - path: /*
-        backend:
-          serviceName: ui
-          servicePort: 8080

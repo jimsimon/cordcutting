@@ -40,8 +40,12 @@ app.use('*', async function (req, res, next) {
 
 app.use(bodyParser.json())
 
-app.get('/_health', function (req, res) {
-  res.send('API is healthy!')
+app.get('/', function (req, res) {
+  if (req.get('User-Agent').includes('GoogleHC')) {
+    res.send('API is healthy!')
+  } else {
+    res.sendStatus(403)
+  }
 })
 
 
