@@ -40,15 +40,15 @@ app.use('*', async function (req, res, next) {
 
 app.use(bodyParser.json())
 
-app.get('/', function (req, res) {
+app.get('/_health', function (req, res) {
   res.send('API is healthy!')
 })
 
 
-if (env !== 'development') {
-  app.use('/api', forceSSL, router)
-} else {
+if (env === 'development') {
   app.use('/api', router)
+} else {
+  app.use('/api', forceSSL, router)
 }
 
 app.use(function (err, req, res, next) {

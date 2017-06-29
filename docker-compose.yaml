@@ -6,6 +6,8 @@ services:
     command: ./node_modules/.bin/polymer serve --hostname 0.0.0.0 -p 8080
     volumes:
       - ./ui:/usr/src/app
+    environment:
+      - NODE_ENV=development
   api:
     build:
       context: api
