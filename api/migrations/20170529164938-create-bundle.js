@@ -136,5 +136,5 @@ function insertBundles(queryInterface, providerId, bundles) {
   bundles.forEach(function (bundle) {
     bundle.providerId = providerId
   })
-  queryInterface.bulkInsert('bundles', bundles)
+  return queryInterface.bulkInsert('bundles', bundles)
 }
