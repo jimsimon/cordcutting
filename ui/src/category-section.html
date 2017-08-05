@@ -21,11 +21,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       ul {
         list-style: none;
-        columns: 4;
+        padding-left: 1rem;
+        columns: 1;
       }
 
       li {
-        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        -moz-column-break-inside:avoid;
+        -webkit-column-break-inside:avoid;
+        column-break-inside:avoid;
       }
 
       paper-checkbox {
@@ -36,15 +40,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-transform: none;
       }
 
-      paper-button[toggles] {
-        border: 1px solid forestgreen;
-        margin-bottom: 10px;
+      @media (min-width: 48em) {
+        ul {
+          columns: 2;
+        }
       }
 
-      paper-button[toggles][active] {
-        background: forestgreen;
-        color: white;
+      @media (min-width: 62em) {
+        ul {
+          columns: 3;
+        }
       }
+
+      @media (min-width: 76em) {
+        ul {
+          columns: 4;
+        }
+      }
+
     </style>
     <h2>[[category.name]]</h2>
     <ul>
