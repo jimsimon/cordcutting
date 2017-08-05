@@ -10,12 +10,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
 
 <dom-module id="category-section">
   <template>
     <style>
       :host {
         display: block;
+      }
+
+      ul {
+        list-style: none;
+        columns: 4;
+      }
+
+      li {
+        margin-bottom: 1rem;
+      }
+
+      paper-checkbox {
+        --paper-checkbox-size: 2rem;
       }
 
       paper-button {
@@ -33,9 +47,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <h2>[[category.name]]</h2>
-    <template id="channelsList" is="dom-repeat" items="[[category.channels]]" as="channel" filter="isFiltered">
-      <paper-button noink toggles id="[[channel.id]]" on-active-changed="saveChannelSelection" active="[[channel.selected]]">[[channel.name]]</paper-button>
-    </template>
+    <ul>
+      <template id="channelsList" is="dom-repeat" items="[[category.channels]]" as="channel" filter="isFiltered" rendered-item-count="{{renderedCount}}">
+        <li><paper-checkbox noink id="[[channel.id]]" checked="[[channel.selected]]" on-change="saveChannelSelection">[[channel.name]]</paper-checkbox></li>
+      </template>
+      <template is="dom-if" if="{{!renderedCount}}">
+        <li>No channels found for this category</li>
+      </template>
+    </ul>
   </template>
 
   <script>
