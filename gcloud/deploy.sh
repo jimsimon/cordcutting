@@ -8,6 +8,3 @@ gcloud docker -- push gcr.io/$(gcloud config get-value project)/ui:$(git rev-par
 
 kubectl set image deployment/api api=gcr.io/$(gcloud config get-value project)/api:$(git rev-parse HEAD)
 kubectl set image deployment/ui ui=gcr.io/$(gcloud config get-value project)/ui:$(git rev-parse HEAD)
-
-CONTAINER="$(kubectl get pods | grep api | cut -d " " -f1)"
-kubectl exec -it $CONTAINER -- npm run sequelize db:migrate
