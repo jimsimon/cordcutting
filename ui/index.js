@@ -2,6 +2,7 @@ const prpl = require('prpl-server')
 const express = require('express')
 const morgan = require('morgan')
 const forceSSL = require('express-force-ssl')
+const compression = require('compression')
 const env = process.env.NODE_ENV
 const polymerConfig = require('./build/polymer.json')
 
@@ -11,6 +12,7 @@ app.set('forceSSLOptions', {
 })
 
 app.use(morgan('combined'))
+app.use(compression())
 
 app.use('/', function (req, res, next) {
   if (req.get('User-Agent').includes('GoogleHC')) {

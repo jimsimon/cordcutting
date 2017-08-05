@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const compression = require('compression')
 const Umzug = require('umzug')
 const forceSSL = require('express-force-ssl')
 const router = require('./router/router')
@@ -20,6 +21,7 @@ const umzug = new Umzug({
 })
 
 app.use(morgan('combined'))
+app.use(compression())
 
 app.use('*', async function (req, res, next) {
   if (env === 'production') {
