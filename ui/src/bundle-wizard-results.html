@@ -54,15 +54,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </paper-listbox>
         </paper-dropdown-menu>
       </div>
-      <template is="dom-repeat" items="[[wizardResult.results]]" as="result" filter="filterOutBundlesWithNoMatches" sort="[[sort]]">
-        <div class="result">
-          <h2>[[result.provider]]: [[result.bundle]]</h2>
-          <div>Price: [[formatCurrency(result.totalPrice)]]</div>
-          <div>Price/Channel: [[calculatePricePerChannel(result)]]</div>
-          <div class="included">Included: [[_stringifyChannels(result.found)]]</div>
-          <div class="missing">Missing: [[_stringifyChannels(result.missing)]]</div>
-        </div>
-      </template>
+      <div class="card-content">
+        <template is="dom-repeat" items="[[wizardResult.results]]" as="result" filter="filterOutBundlesWithNoMatches" sort="[[sort]]">
+          <div class="result">
+            <h2>[[result.provider]]: [[result.bundle]]</h2>
+            <div>Price: [[formatCurrency(result.totalPrice)]]</div>
+            <div>Price/Channel: [[calculatePricePerChannel(result)]]</div>
+            <div class="included">Included: [[_stringifyChannels(result.found)]]</div>
+            <div class="missing">Missing: [[_stringifyChannels(result.missing)]]</div>
+          </div>
+        </template>
+      </div>
     </div>
   </template>
 

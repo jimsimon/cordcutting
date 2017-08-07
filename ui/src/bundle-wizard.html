@@ -38,7 +38,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
-        margin: 0 10px 10px;
         height: 40px
       }
 
@@ -60,9 +59,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-icon icon="search" slot="prefix"></iron-icon>
         </paper-input>
       </div>
-      <template is="dom-repeat" items="[[categories]]" as="category">
-        <category-section category="[[category]]" search-term="[[_normalizedSearchTerm]]"></category-section>
-      </template>
+      <div class="card-content">
+        <template is="dom-repeat" items="[[categories]]" as="category">
+          <category-section category="[[category]]" search-term="[[_normalizedSearchTerm]]"></category-section>
+        </template>
+      </div>
       <div id="actionButtons">
         <paper-button id="clear" on-click="clearSelection">Clear</paper-button>
         <paper-button id="submit" on-click="submitSelection">Submit</paper-button>
