@@ -5,9 +5,7 @@ const compression = require('compression')
 const Umzug = require('umzug')
 const forceSSL = require('express-force-ssl')
 const router = require('./router/router')
-const prpl = require('prpl-server')
-const polymerConfig = require('./static/build/polymer.json')
-const env = process.env.NODE_ENV || 'development'
+const env = process.env.NODE_ENV
 const { sequelize } = require('./util/sequelize')
 
 const app = express()
@@ -52,12 +50,11 @@ app.get('/', function (req, res) {
   }
 })
 
+
 if (env === 'development') {
   app.use('/api', router)
-  app.get('/*', prpl.makeHandler('./static/build', polymerConfig));
 } else {
   app.use('/api', forceSSL, router)
-  app.get('/*', forceSSL, prpl.makeHandler('./static/build', polymerConfig));
 }
 
 app.use(function (err, req, res, next) {

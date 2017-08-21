@@ -1,19 +1,19 @@
 {
-  "entrypoint": "static/index.html",
-  "shell": "static/src/cordcutting-app.html",
+  "entrypoint": "index.html",
+  "shell": "src/cordcutting-app.html",
   "fragments": [
-    "static/src/bundle-wizard.html",
-    "static/src/bundle-wizard-results.html",
-    "static/src/page-not-found.html"
+    "src/bundle-wizard.html",
+    "src/bundle-wizard-results.html",
+    "src/page-not-found.html"
   ],
   "sources": [
-    "static/src/**/*",
-    "static/images/**/*",
+    "src/**/*",
+    "images/**/*",
     "bower.json"
   ],
   "extraDependencies": [
-    "static/manifest.json",
-    "static/bower_components/webcomponentsjs/*.js"
+    "manifest.json",
+    "bower_components/webcomponentsjs/*.js"
   ],
   "lint": {
     "rules": [
