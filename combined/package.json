@@ -1,0 +1,41 @@
+{
+  "name": "cordcut-me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "Apache-2.0",
+  "engines": {
+    "npm": "^5.0.0",
+    "node": "^7.10.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chokidar": "^1.7.0",
+    "compression": "^1.7.0",
+    "express": "^4.15.3",
+    "express-force-ssl": "^0.3.2",
+    "express-promise-router": "^1.1.1",
+    "invalidate-module": "^1.0.0",
+    "morgan": "^1.8.2",
+    "pg": "^6.2.3",
+    "prpl-server": "^0.7.0",
+    "sequelize": "^3.30.4",
+    "sequelize-cli": "^2.7.0",
+    "umzug": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.0",
+    "eslint-config-google": "^0.7.1",
+    "eslint-plugin-html": "^1.7.0",
+    "polymer-cli": "^1.1.0"
+  },
+  "scripts": {
+    "build:ui": "rm -rf build static/build && polymer build && cp -rf build static/build && rm -rf build",
+    "console": "node bin/console.js",
+    "lint": "eslint . --ext js,html --ignore-path .gitignore",
+    "sequelize": "node node_modules/.bin/sequelize",
+    "start": "node index.js",
+    "test": "npm run lint && ./node_modules/.bin/polymer test"
+  }
+}
