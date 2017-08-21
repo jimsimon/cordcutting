@@ -2,17 +2,21 @@ version: '3'
 services:
   ui:
     build:
-      context: ui
-    command: ./node_modules/.bin/polymer serve --hostname 0.0.0.0 -p 8080
+      context: combined
+    command: bash -c "cd static && ../node_modules/.bin/polymer serve --hostname 0.0.0.0 -p 8080"
     volumes:
-      - ./ui:/usr/src/app
+      - ./combined:/usr/src/app
     environment:
       - NODE_ENV=development
+    depends_on:
+      - db
   api:
     build:
-      context: api
+      context: combined
+    ports:
+      - "3000:3000"
     volumes:
-      - ./api:/usr/src/app
+      - ./combined:/usr/src/app
     environment:
       - NODE_ENV=development
     depends_on:
