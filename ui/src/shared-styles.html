@@ -15,7 +15,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       .card {
-        margin: 0 16px;
         color: #757575;
         background-color: #fff;
       }
@@ -40,6 +39,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 16px 0;
         color: #212121;
         font-size: 22px;
+      }
+
+      @media (min-width: 48em) {
+        .card {
+          margin: 0 16px;
+        }
       }
     </style>
   </template>
