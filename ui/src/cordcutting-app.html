@@ -28,6 +28,10 @@
         background-color: var(--app-primary-color);
       }
 
+      app-drawer-layout {
+        min-height: calc(100vh - 64px);
+      }
+
       paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
@@ -79,6 +83,7 @@
         <app-drawer id="drawer" slot="drawer">
           <div class="drawer-content">
             <iron-selector selected="[[currentPageName]]" attr-for-selected="name" class="drawer-list" role="navigation">
+              <a name="home-page" href="/home-page">Home</a>
               <a name="bundle-wizard" href="/bundle-wizard">Bundle Wizard</a>
             </iron-selector>
           </div>
@@ -125,7 +130,15 @@
       }
 
       _setupRoutes() {
-        page.redirect('/', '/bundle-wizard')
+        page.redirect('/', '/home-page')
+
+        this.addRoute(
+          'home-page',
+          '/home-page',
+          'home-page.html',
+          '<home-page></home-page>'
+        )
+
         this.addRoute(
           'bundle-wizard',
           '/bundle-wizard',

@@ -1,0 +1,85 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="category-section.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="home-page">
+  <template>
+    <style include="shared-styles">
+      :host {
+        contain: content;
+        display: block;
+        padding: 10px;
+      }
+
+      paper-button {
+        text-transform: none;
+      }
+
+      #submit, #clear {
+        background: royalblue;
+        color: white;
+      }
+
+      #header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        height: 40px
+      }
+
+      #header > h1 {
+        margin: 0;
+      }
+
+      #actionButtons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+      }
+    </style>
+
+    <div class="card">
+      <div id="header">
+        <h1>Home</h1>
+      </div>
+      <div class="card-content">
+        <p>
+          Welcome to "Cord Cut Me!", a website devoted to helping people cut (or shave) the cable cord.  We have
+          a variety of tools available to help you make the best decision for your home and/or business.  Listed below
+          is an overview of the tools we currently provide, but be sure to check back frequently for updates as we have
+          many new tools and features in development to make your decision process even easier.
+        </p>
+        <h2>Bundle Wizard</h2>
+        <p>Looking to find a streaming service that's just right for you?  If so, then check out our
+          <a href="/bundle-wizard">Bundle Wizard</a>.  Simply select the channels you're interested in and hit submit.
+          We'll then use your selections to search through all of the available bundles and provide you with the
+          information you need to pick the service that's best for you.
+        </p>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    class HomePage extends Polymer.Element {
+      static get is() {
+        return 'home-page'
+      }
+    }
+
+    window.customElements.define(HomePage.is, HomePage);
+  </script>
+</dom-module>

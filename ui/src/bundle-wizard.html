@@ -60,13 +60,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-input>
       </div>
       <div class="card-content">
+        <p>Select the channels you're interested in and then press the "View Results" button to see your results:</p>
         <template is="dom-repeat" items="[[categories]]" as="category">
           <category-section category="[[category]]" search-term="[[_normalizedSearchTerm]]"></category-section>
         </template>
       </div>
       <div id="actionButtons">
         <paper-button id="clear" on-click="clearSelection">Clear</paper-button>
-        <paper-button id="submit" on-click="submitSelection">Submit</paper-button>
+        <paper-button id="submit" on-click="submitSelection">View Results</paper-button>
       </div>
     </div>
   </template>
