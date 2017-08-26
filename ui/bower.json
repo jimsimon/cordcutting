@@ -24,7 +24,10 @@
     "paper-dropdown-menu": "^2.0.0",
     "paper-listbox": "^2.0.0",
     "paper-item": "^2.0.0",
-    "paper-checkbox": "^2.0.1"
+    "paper-checkbox": "^2.0.1",
+    "fetch": "whatwg-fetch#^2.0.3",
+    "babel-polyfill": "^0.0.1",
+    "core.js": "^2.5.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"

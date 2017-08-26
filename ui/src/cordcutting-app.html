@@ -196,24 +196,32 @@
         }
       }
 
-      async _loadBundleWizardData () {
-        const response = await fetch('/api/categories')
-        this.categories = await response.json()
+      _loadBundleWizardData () {
+        fetch('/api/categories')
+          .then((response) => {
+            return response.json()
+          })
+          .then((categories) => {
+            this.categories = categories
+          })
       }
 
-      async _submitChannelSelections (event) {
+      _submitChannelSelections (event) {
         const channels = event.detail
 
         const selectedChannelIds = this._getSelectedChannelIds(channels)
 
-        const response = await fetch('/api/wizardResults', {
+        fetch('/api/wizardResults', {
           method: 'POST',
           headers: new Headers({
             'Content-Type': 'application/json'
           }),
           body: JSON.stringify(selectedChannelIds)
+        }).then((response) => {
+          return response.json()
+        }).then((wizardResult) =>{
+          this.wizardResult = wizardResult
         })
-        this.wizardResult = await response.json()
         page('/bundle-wizard-results')
       }
 
